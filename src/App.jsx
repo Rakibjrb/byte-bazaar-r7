@@ -4,11 +4,11 @@ import Footer from "./Layout/Main/Footer";
 
 function App() {
   return (
-    <>
+    <div data-theme="white">
       <Nav />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }
 
