@@ -30,7 +30,7 @@ const navlinks = (
 
 const Nav = () => {
   const [sticky, setSticky] = useState(false);
-  const user = true;
+  const user = false;
 
   const loggedLinks = (
     <>
