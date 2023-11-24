@@ -2,6 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import "./nav.css";
 import Button from "../../Components/Common/Button";
 import { useEffect, useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+import { MdOutlineLogout, MdDashboard } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const navlinks = (
   <>
@@ -29,19 +34,38 @@ const navlinks = (
 );
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const { user, logOut } = useAuth();
   const [sticky, setSticky] = useState(false);
-  const user = false;
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        toast.success("User logout success ...");
+        navigate("/");
+      })
+      .catch((err) => {
+        toast.error("something went wrong !!!");
+        console.log(err);
+      });
+  };
 
   const loggedLinks = (
     <>
       <li className="cursor-none">
-        <a>{(user && user.displayName) || "Rakibul"}</a>
+        <a>
+          <FaUser /> {(user && user.displayName) || "user19419"}
+        </a>
       </li>
       <li>
-        <Link to="/user-dashboard/profile">Dashboard</Link>
+        <Link to="/user-dashboard/profile">
+          <MdDashboard /> Dashboard
+        </Link>
       </li>
       <li>
-        <button>Logout</button>
+        <button onClick={handleLogout}>
+          <MdOutlineLogout /> Logout
+        </button>
       </li>
     </>
   );
@@ -108,11 +132,11 @@ const Nav = () => {
           ) : (
             <div className="dropdown dropdown-end ml-2 z-[100000]">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-9 rounded-full">
+                <div className="w-10 rounded-full">
                   <img
                     className={`${
-                      sticky && "border-2 border-red-500 rounded-full"
-                    }`}
+                      sticky && "border-2 rounded-full"
+                    } border-1 border-white`}
                     alt="Tailwind CSS Navbar component"
                     src={user?.photoURL || "https://i.ibb.co/5x441PC/user.png"}
                   />
@@ -120,7 +144,7 @@ const Nav = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="font-semibold py-4 space-y-2 menu menu-sm dropdown-content  z-[1] p-2 shadow bg-base-200 rounded-box min-w-[220px] text-black"
+                className=" font-semibold py-4 space-y-2 menu menu-sm dropdown-content  z-[1] p-2 shadow bg-base-200 rounded-box min-w-[250px] text-black"
               >
                 {loggedLinks}
               </ul>

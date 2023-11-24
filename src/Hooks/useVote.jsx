@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import useAuth from "./useAuth";
 
 const useVote = () => {
+  const { user } = useAuth();
   const navigate = useNavigate();
-  const user = false;
 
   const handleVote = () => {
     if (!user) {
