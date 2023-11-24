@@ -1,9 +1,12 @@
 import PropTypes from "prop-types";
 import { BiSolidUpvote } from "react-icons/bi";
 import "./card.css";
+import useVote from "../../Hooks/useVote";
 
 const Card = ({ product }) => {
+  const handleVote = useVote();
   const { img, name, tags, votes } = product;
+
   return (
     <div className="p-2 relative">
       <div className="effect overflow-hidden h-56 lg:h-40 ">
@@ -19,7 +22,10 @@ const Card = ({ product }) => {
           ))}
         </div>
         <div className="absolute w-full bottom-0 left-0 flex">
-          <button className="flex justify-center items-center rounded-lg py-2 w-full px-3 bg-red-600 text-white text-xl hover:bg-red-700 transition-all duration-300">
+          <button
+            onClick={handleVote}
+            className="flex justify-center items-center rounded-lg py-2 w-full px-3 bg-red-600 text-white text-xl hover:bg-red-700 transition-all duration-300"
+          >
             <BiSolidUpvote className="mr-2" /> {votes || 0}
           </button>
         </div>

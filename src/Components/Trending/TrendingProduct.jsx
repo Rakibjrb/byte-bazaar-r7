@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import { BiSolidUpvote } from "react-icons/bi";
+import useVote from "../../Hooks/useVote";
 
 const Trending = ({ product }) => {
+  const handleVote = useVote();
   const { name, img, category, votes } = product;
+
   return (
     <div className="card shadow-xl">
       <figure>
@@ -11,7 +14,7 @@ const Trending = ({ product }) => {
       <div className="card-body">
         <h2 className="card-title mb-5">{name}</h2>
         <div className="card-actions justify-end">
-          <button className="badge badge-outline">
+          <button onClick={handleVote} className="badge badge-outline">
             <BiSolidUpvote /> {votes || 0}
           </button>
           <div className="badge badge-outline">Category : {category}</div>

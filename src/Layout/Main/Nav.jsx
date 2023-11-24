@@ -58,12 +58,14 @@ const Nav = () => {
 
   return (
     <div
-      className={`py-2 z-50 transition-all duration-1000  ${
-        sticky ? "sticky top-0 bg-[#3d3d3d] text-white" : ""
+      className={`py-2 z-[100000] transition-all duration-1000  ${
+        sticky
+          ? "sticky top-0 bg-[#3d3d3d97] text-white"
+          : "text-white z-[100000] bg-[#3d3d3d]"
       }`}
     >
-      <div className="navbar max-w-7xl mx-auto px-3 xl:px-0">
-        <div className="navbar-start">
+      <div className="navbar max-w-7xl mx-auto px-3 xl:px-0 z-[10000]">
+        <div className="navbar-start z-[1000]">
           <div className="dropdown">
             <button className="p-2 focus:ring-2 focus:ring-red-500  rounded-md mr-3 lg:hidden">
               <svg
@@ -93,7 +95,7 @@ const Nav = () => {
             <span className="text-red-500 font-extrabold"> Bazaar</span>
           </a>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end z-[100000]">
           <div className="hidden lg:flex">
             <ul className="menu-horizontal px-1 space-x-5 font-semibold">
               {navlinks}
@@ -104,7 +106,7 @@ const Nav = () => {
               <Button>Login</Button>
             </Link>
           ) : (
-            <div className="dropdown dropdown-end ml-2">
+            <div className="dropdown dropdown-end ml-2 z-[100000]">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-9 rounded-full">
                   <img
