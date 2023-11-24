@@ -51,6 +51,7 @@ const Signup = () => {
           .then(() => {
             updateUserAccount(formData.name, imagelink)
               .then(() => {
+                setLoading(false);
                 toast.success("User account creation successfull ...");
                 navigate(location.state ? location.state?.from : "/");
               })
