@@ -59,13 +59,13 @@ const Nav = () => {
   return (
     <div
       className={`py-2 z-50 transition-all duration-1000  ${
-        sticky ? "sticky top-0 bg-[#b8b8f4]" : ""
+        sticky ? "sticky top-0 bg-[#3d3d3d] text-white" : ""
       }`}
     >
       <div className="navbar max-w-7xl mx-auto px-3 xl:px-0">
         <div className="navbar-start">
           <div className="dropdown">
-            <button className="p-2 focus:ring-2  rounded-md mr-3 lg:hidden">
+            <button className="p-2 focus:ring-2 focus:ring-red-500  rounded-md mr-3 lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -83,14 +83,14 @@ const Nav = () => {
             </button>
             <ul
               tabIndex={0}
-              className="text-black space-y-3 py-5 mt-3 menu-sm dropdown-content z-[1] p-2 shadow bg-base-300 w-[220px]"
+              className="text-black rounded-md space-y-3 py-5 mt-3 menu-sm dropdown-content z-[1] p-2 shadow bg-base-300 w-[220px]"
             >
               {navlinks}
             </ul>
           </div>
-          <a className={`font-bold text-xl uppercase`}>
-            Byte
-            <span className=""> Bazaar</span>
+          <a className="font-bold text-xl">
+            byte
+            <span className="text-red-500 font-extrabold"> Bazaar</span>
           </a>
         </div>
         <div className="navbar-end">
@@ -108,7 +108,9 @@ const Nav = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-9 rounded-full">
                   <img
-                    className={`${sticky && "border-2 border-black"}`}
+                    className={`${
+                      sticky && "border-2 border-red-500 rounded-full"
+                    }`}
                     alt="Tailwind CSS Navbar component"
                     src={user?.photoURL || "https://i.ibb.co/5x441PC/user.png"}
                   />
@@ -116,7 +118,7 @@ const Nav = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="py-4 space-y-2 menu menu-sm dropdown-content  z-[1] p-2 shadow bg-base-300 rounded-box min-w-[220px] text-black"
+                className="font-semibold py-4 space-y-2 menu menu-sm dropdown-content  z-[1] p-2 shadow bg-base-200 rounded-box min-w-[220px] text-black"
               >
                 {loggedLinks}
               </ul>
