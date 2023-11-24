@@ -1,23 +1,10 @@
-import { useEffect, useState } from "react";
+import useFeatured from "../../../../Hooks/useFeatured";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import Card from "../../../../Components/ProductCard/Card";
 import Button from "../../../../Components/Common/Button";
 
 const Featured = () => {
-  const [loading, setLoading] = useState(true);
-  const [featured, setFeatured] = useState([]);
-
-  useEffect(() => {
-    fetch("./products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const featured = data.filter(
-          (product) => product.category === "featured"
-        );
-        setFeatured(featured);
-        setLoading(false);
-      });
-  }, []);
+  const [featured, isPending] = useFeatured();
 
   return (
     <div className="mb-24">
@@ -34,10 +21,10 @@ const Featured = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-10">
-        {loading
+        {isPending
           ? "loadin data ..."
           : featured?.map((product) => (
-              <Card key={product.id} product={product} />
+              <Card key={product._id} product={product} />
             ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { BiSolidUpvote } from "react-icons/bi";
-import "./card.css";
 import useVote from "../../Hooks/useVote";
+import "./card.css";
 
 const Card = ({ product }) => {
   const handleVote = useVote();

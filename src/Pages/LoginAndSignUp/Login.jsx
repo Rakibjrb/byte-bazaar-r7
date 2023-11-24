@@ -1,13 +1,13 @@
-import loginsvg from "../../assets/login/Login.svg";
-import "./style.css";
-import SocialLogin from "./SocialLogin";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import useAuth from "../../Hooks/useAuth";
-import toast from "react-hot-toast";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ImSpinner3 } from "react-icons/im";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
+import loginsvg from "../../assets/login/Login.svg";
+import SocialLogin from "./SocialLogin";
+import "./style.css";
 
 const Login = () => {
   const navigate = useNavigate();

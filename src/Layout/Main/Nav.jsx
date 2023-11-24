@@ -1,12 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
-import "./nav.css";
-import Button from "../../Components/Common/Button";
 import { useEffect, useState } from "react";
-import useAuth from "../../Hooks/useAuth";
-import { MdOutlineLogout, MdDashboard } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
-import toast from "react-hot-toast";
+import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { MdOutlineLogout, MdDashboard } from "react-icons/md";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
+import Button from "../../Components/Common/Button";
+
+import "./nav.css";
 
 const navlinks = (
   <>

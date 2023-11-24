@@ -1,33 +1,25 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import TrendingProduct from "../../../../Components/Trending/TrendingProduct";
 import Button from "../../../../Components/Common/Button";
+import useTrending from "../../../../Hooks/useTrending";
 
 const Trending = () => {
-  const [loading, setLoading] = useState(true);
-  const [trending, setTrending] = useState([]);
-
-  useEffect(() => {
-    fetch("./products.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const featured = data.filter(
-          (product) => product.category === "trending"
-        );
-        setTrending(featured);
-        setLoading(false);
-      });
-  }, []);
+  const [trending, isPending] = useTrending();
 
   return (
     <div className="mb-24">
       <SectionHeader subtitle="--trending--" title="Trending Products" />
+      <div className="flex justify-center  mt-5">
+        <Button>
+          <button>Sort by votes</button>
+        </Button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-        {loading
+        {isPending
           ? "loading data ..."
           : trending?.map((product) => (
-              <TrendingProduct key={product.id} product={product} />
+              <TrendingProduct key={product._id} product={product} />
             ))}
       </div>
       <div className="flex justify-center mt-10">

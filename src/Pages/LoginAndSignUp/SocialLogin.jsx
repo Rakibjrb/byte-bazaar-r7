@@ -1,7 +1,7 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { ImSpinner3 } from "react-icons/im";
-import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const SocialLogin = () => {

@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "img": "https://i.ibb.co/dph6fJ9/applewatchseries8.jpg",
     "name": "Apple smart watch",
     "price": 20,
@@ -16,7 +15,6 @@
     }
   },
   {
-    "id": 2,
     "img": "https://i.ibb.co/fQsK7rx/samsungsmartwatch.jpg",
     "name": "Samsung Smart watch",
     "price": 220,
@@ -32,7 +30,6 @@
     }
   },
   {
-    "id": 3,
     "img": "https://i.ibb.co/T8k8977/inteli9.jpg",
     "name": "Intel core i9 proccessor",
     "price": 20,
@@ -48,7 +45,6 @@
     }
   },
   {
-    "id": 4,
     "img": "https://i.ibb.co/4sXvX4c/iphone15promax.jpg",
     "name": "Apple 15 ultra pro max",
     "price": 1500,
@@ -64,7 +60,6 @@
     }
   },
   {
-    "id": 5,
     "img": "https://i.ibb.co/dph6fJ9/applewatchseries8.jpg",
     "name": "Apple smart watch",
     "price": 20,
@@ -80,7 +75,6 @@
     }
   },
   {
-    "id": 6,
     "img": "https://i.ibb.co/fQsK7rx/samsungsmartwatch.jpg",
     "name": "Samsung Smart watch",
     "price": 220,
@@ -96,7 +90,6 @@
     }
   },
   {
-    "id": 7,
     "img": "https://i.ibb.co/T8k8977/inteli9.jpg",
     "name": "Intel core i9 proccessor",
     "price": 20,
@@ -112,7 +105,6 @@
     }
   },
   {
-    "id": 8,
     "img": "https://i.ibb.co/4sXvX4c/iphone15promax.jpg",
     "name": "Apple 15 ultra pro max",
     "price": 1500,
@@ -128,7 +120,6 @@
     }
   },
   {
-    "id": 9,
     "img": "https://i.ibb.co/T8k8977/inteli9.jpg",
     "name": "Intel core i9 proccessor",
     "price": 20,
@@ -144,7 +135,6 @@
     }
   },
   {
-    "id": 10,
     "img": "https://i.ibb.co/4sXvX4c/iphone15promax.jpg",
     "name": "Apple 15 ultra pro max",
     "price": 1500,
