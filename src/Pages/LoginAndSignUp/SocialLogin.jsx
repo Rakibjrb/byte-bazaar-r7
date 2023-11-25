@@ -11,8 +11,6 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const { googleLogin } = useAuth();
 
-  console.log(location);
-
   const handleGoogleLogin = () => {
     setLoading(true);
     googleLogin()

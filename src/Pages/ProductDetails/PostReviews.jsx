@@ -1,7 +1,23 @@
+import { useMutation } from "@tanstack/react-query";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { ImSpinner3 } from "react-icons/im";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-const PostReviews = ({ id, productName }) => {
+const PostReviews = ({ id, productName, refetch }) => {
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const mutation = useMutation({
+    mutationKey: [id],
+    mutationFn: async (data) => {
+      const muted = await axiosSecure.post(`/reviews/${id}`, data);
+      console.log(muted.data);
+      return muted;
+    },
+  });
+
   const {
     register,
     handleSubmit,
@@ -9,8 +25,17 @@ const PostReviews = ({ id, productName }) => {
   } = useForm();
 
   const onSubmit = (review) => {
-    console.log(id);
-    console.log(review);
+    const reviewData = {
+      productId: id,
+      name: user.displayName,
+      image: user.photoURL,
+      rating: review.rating,
+      testimonial: review.testimonial,
+    };
+
+    mutation.mutate(reviewData);
+    Swal.fire("Thanks for share your review");
+    refetch();
   };
 
   return (
@@ -44,21 +69,23 @@ const PostReviews = ({ id, productName }) => {
           <option>5</option>
         </select>
         <input
+          defaultValue={user.displayName}
           type="text"
-          placeholder="name"
-          {...register("name")}
           className="focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
           disabled
         />
         <input
+          defaultValue={user.photoURL}
           type="text"
-          placeholder="image"
-          {...register("image")}
           className="focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
           disabled
         />
         <button className="text-center btn w-full col-span-2 bg-red-400 font-semibold text-white uppercase">
-          Post Now
+          {mutation.isPending ? (
+            <ImSpinner3 className="text-xl animate-spin" />
+          ) : (
+            "Post Now"
+          )}
         </button>
       </form>
     </div>
@@ -68,5 +95,6 @@ const PostReviews = ({ id, productName }) => {
 PostReviews.propTypes = {
   id: PropTypes.string,
   productName: PropTypes.string,
+  refetch: PropTypes.func,
 };
 export default PostReviews;

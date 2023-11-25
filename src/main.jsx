@@ -13,6 +13,7 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Toaster position="top-center" reverseOrder={false} />
+
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router}>

@@ -7,7 +7,7 @@ import PostReviews from "./PostReviews";
 
 const ProductsDetails = () => {
   const id = useParams().id;
-  const { data: product } = useProductById(id);
+  const { data: product, refetch } = useProductById(id);
 
   return (
     <div className="px-3 md:px-0 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto mt-10 mb-24">
@@ -21,7 +21,11 @@ const ProductsDetails = () => {
       <div className="mt-20">
         <ProductReviews id={id} />
       </div>
-      <PostReviews id={id} productName={product?.name || "No name"} />
+      <PostReviews
+        id={id}
+        productName={product?.name || "No name"}
+        refetch={refetch}
+      />
     </div>
   );
 };
