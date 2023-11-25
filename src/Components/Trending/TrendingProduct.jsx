@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { BiSolidUpvote } from "react-icons/bi";
+import { MdHowToVote } from "react-icons/md";
 import useVote from "../../Hooks/useVote";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const Trending = ({ product }) => {
         </Link>
         <div className="card-actions justify-end">
           <button onClick={handleVote} className="badge badge-outline">
-            <BiSolidUpvote /> {votes || 0}
+            <MdHowToVote className="mr-1" /> {votes || 0}
           </button>
           <div className="badge badge-outline">Category : {category}</div>
         </div>

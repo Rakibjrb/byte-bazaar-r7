@@ -4,13 +4,13 @@ import useAxiosPublic from "./useAxiosPublic";
 const useFeatured = (sort) => {
   const axios = useAxiosPublic();
   const {
-    data: featured,
+    data: featured = [],
     isPending,
     refetch,
   } = useQuery({
     queryKey: ["featured", sort],
     queryFn: async () => {
-      const res = await axios(`/api/featured?sort=${sort}`);
+      const res = await axios(`/featured?sort=${sort}`);
       return res.data;
     },
   });

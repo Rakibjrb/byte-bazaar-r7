@@ -4,13 +4,13 @@ import useAxiosPublic from "./useAxiosPublic";
 const useTrending = (sort) => {
   const axios = useAxiosPublic();
   const {
-    data: trending,
+    data: trending = [],
     isPending,
     refetch,
   } = useQuery({
     queryKey: ["trending", sort],
     queryFn: async () => {
-      const res = await axios(`/api/trending?sort=${sort}`);
+      const res = await axios(`/trending?sort=${sort}`);
       return res.data;
     },
   });

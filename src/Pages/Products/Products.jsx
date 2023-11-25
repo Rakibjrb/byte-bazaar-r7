@@ -13,7 +13,7 @@ const Products = () => {
   const { data, isPending } = useQuery({
     queryKey: ["all_products", searchText],
     queryFn: async () => {
-      const res = await axios.get(`/api/product/all?search=${searchText}`);
+      const res = await axios.get(`/product/all?search=${searchText}`);
       return res.data;
     },
   });

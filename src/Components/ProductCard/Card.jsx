@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { BiSolidUpvote } from "react-icons/bi";
+import { MdHowToVote } from "react-icons/md";
 import useVote from "../../Hooks/useVote";
 import "./card.css";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ const Card = ({ product }) => {
             onClick={handleVote}
             className="flex justify-center items-center rounded-lg py-2 w-full px-3 bg-red-600 text-white text-xl hover:bg-red-700 transition-all duration-300"
           >
-            <BiSolidUpvote className="mr-2" /> {votes || 0}
+            <MdHowToVote className="mr-2 text-2xl" /> {votes || 0}
           </button>
         </div>
       </div>
