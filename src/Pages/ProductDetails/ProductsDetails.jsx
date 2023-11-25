@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom";
 import useProductById from "../../Hooks/useProductById";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import DetailsCard from "./DetailsCard";
+import ProductReviews from "./ProductReviews";
+import PostReviews from "./PostReviews";
 
 const ProductsDetails = () => {
   const id = useParams().id;
-
   const { data: product } = useProductById(id);
 
   return (
@@ -17,6 +18,10 @@ const ProductsDetails = () => {
       <div className="mt-8">
         <DetailsCard product={product} />
       </div>
+      <div className="mt-20">
+        <ProductReviews id={id} />
+      </div>
+      <PostReviews id={id} productName={product?.name || "No name"} />
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Trending = () => {
 
   return (
     <div className="mb-24">
-      <SectionHeader subtitle="--trending--" title="Trending Products" />
+      <SectionHeader subtitle="--Trending--" title="Trending Products" />
       <div className="flex justify-center  mt-5">
         <Button>
           <button
