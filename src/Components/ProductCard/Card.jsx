@@ -5,7 +5,7 @@ import "./card.css";
 
 const Card = ({ product }) => {
   const handleVote = useVote();
-  const { img, name, tags, votes } = product;
+  const { img, name, tags, votes, time } = product;
 
   return (
     <div className="p-2 relative">
@@ -14,6 +14,7 @@ const Card = ({ product }) => {
       </div>
       <div className="mt-4">
         <h3 className="text-2xl font-semibold">{name}</h3>
+        <p className="mt-2">Date : {time}</p>
         <div className="flex flex-wrap mt-3 mb-16">
           {tags?.map((tag) => (
             <p key={tag} className="text-[#7d7d7d] text-xl gap-4 mr-4">

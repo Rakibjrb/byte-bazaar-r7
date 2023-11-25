@@ -2,9 +2,11 @@ import useFeatured from "../../../../Hooks/useFeatured";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import Card from "../../../../Components/ProductCard/Card";
 import Button from "../../../../Components/Common/Button";
+import { useState } from "react";
 
 const Featured = () => {
-  const [featured, isPending] = useFeatured();
+  const [sort, setSort] = useState(false);
+  const [featured, isPending] = useFeatured(!sort ? "asc" : "desc");
 
   return (
     <div className="mb-24">
@@ -16,7 +18,13 @@ const Featured = () => {
       />
       <div className="flex justify-center  mt-5">
         <Button>
-          <button>View Latest</button>
+          <button
+            onClick={() => {
+              setSort(!sort);
+            }}
+          >
+            {sort ? "View Latest" : "View old"}
+          </button>
         </Button>
       </div>
 

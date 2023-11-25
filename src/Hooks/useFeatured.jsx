@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useFeatured = () => {
+const useFeatured = (sort) => {
   const axios = useAxiosPublic();
   const {
     data: featured,
     isPending,
     refetch,
   } = useQuery({
-    queryKey: ["featured"],
+    queryKey: ["featured", sort],
     queryFn: async () => {
-      const res = await axios(`/featured`);
+      const res = await axios(`/api/featured?sort=${sort}`);
       return res.data;
     },
   });
