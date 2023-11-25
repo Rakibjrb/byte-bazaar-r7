@@ -7,6 +7,7 @@ import Signup from "../Pages/LoginAndSignUp/Signup";
 import Faq from "../Pages/Faq/Faq";
 import ProductsDetails from "../Pages/ProductDetails/ProductsDetails";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
         ),
       },
     ],
+    errorElement: <ErrorPage />,
   },
   {
     path: "login",
