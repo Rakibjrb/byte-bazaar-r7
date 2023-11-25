@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../firebase/firebase.config";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -19,6 +20,7 @@ const googleAuthProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [userLoading, setUserLoading] = useState(true);
   const [user, setUser] = useState();
+  const axios = useAxiosPublic();
 
   const googleLogin = () => {
     return signInWithPopup(auth, googleAuthProvider);
@@ -61,10 +63,19 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setUserLoading(false);
+
+      //token create and clear
+
+      if (user) {
+        const email = user.email;
+        axios.post("/create-token", { email });
+      } else {
+        axios.get("/clear-cookie");
+      }
     });
 
     return () => unSubscribe();
-  }, []);
+  }, [axios]);
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
