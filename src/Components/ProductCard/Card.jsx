@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import { BiSolidUpvote } from "react-icons/bi";
 import useVote from "../../Hooks/useVote";
 import "./card.css";
+import { Link } from "react-router-dom";
 
 const Card = ({ product }) => {
   const handleVote = useVote();
-  const { img, name, tags, votes, time } = product;
+  const { _id, img, name, tags, votes, time } = product;
 
   return (
     <div className="p-2 relative">
@@ -13,7 +14,9 @@ const Card = ({ product }) => {
         <img className="image w-full h-full " src={img} alt={name} />
       </div>
       <div className="mt-4">
-        <h3 className="text-2xl font-semibold">{name}</h3>
+        <Link to={`/product/${_id}`}>
+          <h3 className="text-2xl font-semibold hover:underline">{name}</h3>
+        </Link>
         <p className="mt-2">Date : {time}</p>
         <div className="flex flex-wrap mt-3 mb-16">
           {tags?.map((tag) => (

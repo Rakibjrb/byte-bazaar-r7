@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { BiSolidUpvote } from "react-icons/bi";
 import useVote from "../../Hooks/useVote";
+import { Link } from "react-router-dom";
 
 const Trending = ({ product }) => {
   const handleVote = useVote();
-  const { name, img, category, votes } = product;
+  const { _id, name, img, category, votes } = product;
 
   return (
     <div className="card shadow-xl">
@@ -12,7 +13,9 @@ const Trending = ({ product }) => {
         <img className="w-full h-56" src={img} alt={name} />
       </figure>
       <div className="card-body">
-        <h2 className="card-title mb-5">{name}</h2>
+        <Link to={`/product/${_id}`}>
+          <h2 className="card-title mb-5 hover:underline">{name}</h2>
+        </Link>
         <div className="card-actions justify-end">
           <button onClick={handleVote} className="badge badge-outline">
             <BiSolidUpvote /> {votes || 0}
