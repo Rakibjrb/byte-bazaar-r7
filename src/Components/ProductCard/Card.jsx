@@ -9,7 +9,7 @@ const Card = ({ product }) => {
   const { _id, img, name, tags, votes, time } = product;
 
   return (
-    <div className="p-2 relative">
+    <div className="pb-2 relative">
       <div className="effect overflow-hidden h-56 lg:h-40 ">
         <img className="image w-full h-full " src={img} alt={name} />
       </div>

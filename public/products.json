@@ -3,13 +3,14 @@
     "img": "https://i.ibb.co/dph6fJ9/applewatchseries8.jpg",
     "name": "Apple smart watch",
     "price": 20,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
-    "time": "2023-11-24",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
+    "time": "2023-11-14",
     "votes": 20,
     "category": "featured",
     "tags": ["watch", "smartwatch", "handwatch"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -18,13 +19,14 @@
     "img": "https://i.ibb.co/fQsK7rx/samsungsmartwatch.jpg",
     "name": "Samsung Smart watch",
     "price": 220,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
-    "time": "2023-11-24",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
+    "time": "2023-11-20",
     "votes": 40,
     "category": "featured",
     "tags": ["headphone", "earphone", "headset"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -33,13 +35,14 @@
     "img": "https://i.ibb.co/T8k8977/inteli9.jpg",
     "name": "Intel core i9 proccessor",
     "price": 20,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-21",
     "votes": 10,
     "category": "featured",
     "tags": ["board", "hardware", "motherboard"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -48,13 +51,14 @@
     "img": "https://i.ibb.co/4sXvX4c/iphone15promax.jpg",
     "name": "Apple 15 ultra pro max",
     "price": 1500,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-24",
     "votes": 40,
     "category": "featured",
     "tags": ["headphone", "earphone", "headset"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -63,13 +67,14 @@
     "img": "https://i.ibb.co/dph6fJ9/applewatchseries8.jpg",
     "name": "Apple smart watch",
     "price": 20,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-24",
     "votes": 20,
     "category": "trending",
     "tags": ["watch", "smartwatch", "handwatch"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -78,13 +83,14 @@
     "img": "https://i.ibb.co/fQsK7rx/samsungsmartwatch.jpg",
     "name": "Samsung Smart watch",
     "price": 220,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-24",
     "votes": 40,
     "category": "trending",
     "tags": ["headphone", "earphone", "headset"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -93,13 +99,14 @@
     "img": "https://i.ibb.co/T8k8977/inteli9.jpg",
     "name": "Intel core i9 proccessor",
     "price": 20,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-21",
     "votes": 10,
     "category": "trending",
     "tags": ["board", "hardware", "motherboard"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -108,13 +115,14 @@
     "img": "https://i.ibb.co/4sXvX4c/iphone15promax.jpg",
     "name": "Apple 15 ultra pro max",
     "price": 1500,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-24",
     "votes": 40,
     "category": "trending",
     "tags": ["headphone", "earphone", "headset"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -123,13 +131,14 @@
     "img": "https://i.ibb.co/T8k8977/inteli9.jpg",
     "name": "Intel core i9 proccessor",
     "price": 20,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-21",
     "votes": 10,
     "category": "trending",
     "tags": ["board", "hardware", "motherboard"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }
@@ -138,13 +147,14 @@
     "img": "https://i.ibb.co/4sXvX4c/iphone15promax.jpg",
     "name": "Apple 15 ultra pro max",
     "price": 1500,
-    "description": "this is from product description this is from product description this is from product description this is from product description this is from product description",
+    "description": "The Apple Watch serves as a comprehensive health and fitness companion, equipped with features such as heart rate monitoring, ECG (electrocardiogram) functionality, sleep tracking, and a variety of workout modes. It encourages users to stay active and provides insights into their overall well-being. Users can receive and respond to notifications directly from their wrists, reducing the need to check their iPhones constantly. The watch supports phone calls, messages, emails, and various app notifications, enhancing connectivity and convenience.",
     "time": "2023-11-24",
     "votes": 40,
     "category": "trending",
     "tags": ["headphone", "earphone", "headset"],
     "owner": {
       "name": "Rakibul Hasan",
+      "image": "https://i.ibb.co/5x441PC/user.png",
       "email": "rakibjrb572157@gmail.com",
       "profession": "Business"
     }

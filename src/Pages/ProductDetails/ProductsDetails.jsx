@@ -12,7 +12,7 @@ const ProductsDetails = () => {
     <div className="px-3 md:px-0 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto mt-10 mb-24">
       <SectionHeader
         subtitle={`--Details of--`}
-        title={product[0]?.name || "No name"}
+        title={product?.name || "No name"}
       />
       <div className="mt-8">
         <DetailsCard product={product} />

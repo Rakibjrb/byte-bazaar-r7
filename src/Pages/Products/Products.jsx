@@ -40,7 +40,7 @@ const Products = () => {
             className="rounded-r-none focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
             required
           />
-          <button className="btn rounded-l-none bg-red-500 uppercase -ml-1">
+          <button className="btn rounded-l-none bg-red-500 uppercase -ml-1 text-white font-semibold">
             Search
           </button>
         </form>
