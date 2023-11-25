@@ -11,10 +11,13 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const { googleLogin } = useAuth();
 
+  console.log(location);
+
   const handleGoogleLogin = () => {
     setLoading(true);
     googleLogin()
       .then(() => {
+        setLoading(false);
         toast.success("Google Login Successfull ...");
         navigate(location.state ? location?.state?.from : "/");
       })
