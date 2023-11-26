@@ -6,7 +6,7 @@ const useTrending = (sort) => {
   const {
     data: trending = [],
     isPending,
-    refetch,
+    refetch: refetchtrending,
   } = useQuery({
     queryKey: ["trending", sort],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const useTrending = (sort) => {
     },
   });
 
-  return [trending, isPending, refetch];
+  return [trending, isPending, refetchtrending];
 };
 
 export default useTrending;

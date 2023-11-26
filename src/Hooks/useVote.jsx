@@ -3,12 +3,18 @@ import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import useProductById from "./useProductById";
+import useTrending from "./useTrending";
+import useFeatured from "./useFeatured";
 
 const useVote = (id, votes) => {
   const [voted, setVoted] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const { refetch: refetchProductById } = useProductById(id);
+  const [, , refetchtrending] = useTrending(voted ? "desc" : "asc");
+  const [, , refetchfeatured] = useFeatured(voted ? "desc" : "asc");
 
   const handleVote = async () => {
     if (!user) {
@@ -20,6 +26,9 @@ const useVote = (id, votes) => {
       useremail: user?.email,
     };
     const res = await axiosSecure.post("/vote", voteData);
+    refetchtrending();
+    refetchfeatured();
+    refetchProductById();
     res.data && Swal.fire("Voted");
     setVoted(true);
   };

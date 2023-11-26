@@ -6,7 +6,7 @@ const useFeatured = (sort) => {
   const {
     data: featured = [],
     isPending,
-    refetch: refetch2,
+    refetch: refetchfeatured,
   } = useQuery({
     queryKey: ["featured", sort],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const useFeatured = (sort) => {
     },
   });
 
-  return [featured, isPending, refetch2];
+  return [featured, isPending, refetchfeatured];
 };
 
 export default useFeatured;
