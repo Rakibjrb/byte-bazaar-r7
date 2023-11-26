@@ -2,11 +2,31 @@ import PropTypes from "prop-types";
 import { MdHowToVote } from "react-icons/md";
 import { IoShareSocial } from "react-icons/io5";
 import useVote from "../../Hooks/useVote";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const DetailsCard = ({ product }) => {
+  const { user } = useAuth();
   const handleVote = useVote();
+  const axiosSecure = useAxiosSecure();
 
-  const { name, owner, img, description, tags, votes, time } = product;
+  const { _id, name, owner, img, description, tags, votes, time } = product;
+
+  const handleReport = async () => {
+    const data = {
+      productId: _id,
+      name,
+      img,
+      owner,
+      reportedUser: {
+        name: user.displayName,
+        email: user.email,
+      },
+    };
+    const res = await axiosSecure.post("/report", data);
+    res.data._id && Swal.fire("Report Successfull...");
+  };
 
   return (
     <div>
@@ -52,7 +72,10 @@ const DetailsCard = ({ product }) => {
             >
               <MdHowToVote className="mr-2 text-2xl" /> {votes || 0}
             </button>
-            <button className="flex-1 w-full btn-outline btn font-semibold uppercase">
+            <button
+              onClick={handleReport}
+              className="flex-1 w-full btn-outline btn font-semibold uppercase"
+            >
               Report Product
             </button>
           </div>
