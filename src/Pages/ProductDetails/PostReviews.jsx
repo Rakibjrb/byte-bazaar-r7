@@ -24,7 +24,7 @@ const PostReviews = ({ id, productName, refetch }) => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (review) => {
+  const onSubmit = async (review) => {
     const reviewData = {
       productId: id,
       name: user.displayName,
@@ -33,13 +33,13 @@ const PostReviews = ({ id, productName, refetch }) => {
       testimonial: review.testimonial,
     };
 
-    mutation.mutate(reviewData);
+    await mutation.mutate(reviewData);
     Swal.fire("Thanks for share your review");
     refetch();
   };
 
   return (
-    <div>
+    <div className="mt-8">
       <h2 className="text-4xl font-semibold mb-2">Post a Review now for</h2>
       <h3 className="text-xl">{productName}</h3>
       <form

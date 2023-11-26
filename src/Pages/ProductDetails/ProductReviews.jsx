@@ -27,7 +27,7 @@ const ProductReviews = ({ id }) => {
 
       <div>
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          {reviews?.reviews?.map((review) => (
+          {reviews?.map((review) => (
             <SwiperSlide key={`id${count++}`}>
               <div className="flex flex-col items-center mx-8 my-16">
                 <img
