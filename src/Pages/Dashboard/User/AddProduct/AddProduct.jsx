@@ -18,6 +18,7 @@ const AddProduct = () => {
       votes: 0,
       category: info.category,
       tags,
+      status: "Pending",
     };
 
     console.log(productInfo);
