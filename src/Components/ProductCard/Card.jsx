@@ -3,10 +3,12 @@ import { MdHowToVote } from "react-icons/md";
 import useVote from "../../Hooks/useVote";
 import "./card.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Card = ({ product }) => {
-  const handleVote = useVote();
+  const [disable, setDisable] = useState(false);
   const { _id, img, name, tags, votes, time } = product;
+  const handleVote = useVote(_id, votes);
 
   return (
     <div className="pb-2 relative">
@@ -27,8 +29,14 @@ const Card = ({ product }) => {
         </div>
         <div className="absolute w-full bottom-0 left-0 flex">
           <button
-            onClick={handleVote}
-            className="flex justify-center items-center rounded-lg py-2 w-full px-3 bg-red-600 text-white text-xl hover:bg-red-700 transition-all duration-300"
+            disabled={disable}
+            onClick={() => {
+              handleVote();
+              setDisable(true);
+            }}
+            className={`flex justify-center items-center rounded-lg py-2 w-full px-3 ${
+              disable ? "bg-gray-400" : "bg-red-400"
+            } text-white text-xl hover:bg-red-700 transition-all duration-300`}
           >
             <MdHowToVote className="mr-2 text-2xl" /> {votes || 0}
           </button>
