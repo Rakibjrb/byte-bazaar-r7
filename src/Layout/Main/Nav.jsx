@@ -59,7 +59,7 @@ const Nav = () => {
         </a>
       </li>
       <li>
-        <Link to="/user-dashboard/profile">
+        <Link to="/dashboard/profile">
           <MdDashboard /> Dashboard
         </Link>
       </li>
