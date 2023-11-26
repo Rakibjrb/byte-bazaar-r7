@@ -1,15 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 import useAxiosSecure from "./useAxiosSecure";
-import { useState } from "react";
-import useFeatured from "./useFeatured";
 import Swal from "sweetalert2";
-import useTrending from "./useTrending";
+import { useState } from "react";
 
 const useVote = (id, votes) => {
-  const [reload, setReload] = useState(false);
-  const [, , refetch2] = useFeatured(reload ? "desc" : "asc");
-  const [, , refetch] = useTrending(reload ? "desc" : "asc");
+  const [voted, setVoted] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
@@ -18,13 +14,16 @@ const useVote = (id, votes) => {
     if (!user) {
       return navigate("/login");
     }
-    const res = await axiosSecure.post("/vote", { id, votes: votes + 1 });
-    setReload(!reload);
-    refetch2();
-    refetch();
+    const voteData = {
+      productId: id,
+      votes: votes + 1,
+      useremail: user?.email,
+    };
+    const res = await axiosSecure.post("/vote", voteData);
     res.data && Swal.fire("Voted");
+    setVoted(true);
   };
-  return handleVote;
+  return { handleVote, voted };
 };
 
 export default useVote;

@@ -4,11 +4,13 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Card from "../../Components/ProductCard/Card";
 import { useEffect, useState } from "react";
 import NotFound from "../../Components/Common/NotFound";
+import useGetAllVotes from "../../Hooks/useGetAllVotes";
 
 const Products = () => {
   const axios = useAxiosPublic();
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { votedproduct } = useGetAllVotes();
 
   const { data, isPending } = useQuery({
     queryKey: ["all_products", searchText],
@@ -49,7 +51,11 @@ const Products = () => {
         {isPending
           ? "loading data ..."
           : allProducts?.map((product) => (
-              <Card key={product._id} product={product} />
+              <Card
+                key={product._id}
+                product={product}
+                votedproduct={votedproduct}
+              />
             ))}
       </div>
       <div className={`${allProducts?.length ? "hidden" : ""}`}>

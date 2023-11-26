@@ -4,10 +4,13 @@ import useVote from "../../Hooks/useVote";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Trending = ({ product }) => {
+const Trending = ({ product, votedproduct }) => {
   const [disable, setDisable] = useState(false);
   const { _id, name, img, category, votes } = product;
-  const handleVote = useVote(_id, votes);
+  const { handleVote } = useVote(_id, votes);
+
+  const alreadyvoted = votedproduct?.find((vote) => vote?.productId === _id);
+  const votedtrue = alreadyvoted?.productId === _id;
 
   return (
     <div className="card shadow-xl">
@@ -20,13 +23,13 @@ const Trending = ({ product }) => {
         </Link>
         <div className="card-actions justify-end">
           <button
-            disabled={disable}
+            disabled={disable || votedtrue}
             onClick={() => {
               handleVote();
               setDisable(true);
             }}
             className={`badge badge-outline ${
-              disable ? "bg-gray-500 text-white" : ""
+              disable || votedtrue ? "bg-gray-500 text-white" : ""
             }`}
           >
             <MdHowToVote className="mr-1" /> {votes || 0}
@@ -40,5 +43,6 @@ const Trending = ({ product }) => {
 
 Trending.propTypes = {
   product: PropTypes.object,
+  votedproduct: PropTypes.array,
 };
 export default Trending;

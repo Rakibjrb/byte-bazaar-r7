@@ -4,10 +4,12 @@ import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import TrendingProduct from "../../../../Components/Trending/TrendingProduct";
 import Button from "../../../../Components/Common/Button";
 import useTrending from "../../../../Hooks/useTrending";
+import useGetAllVotes from "../../../../Hooks/useGetAllVotes";
 
 const Trending = () => {
   const [sort, setSort] = useState(false);
   const [trending, isPending] = useTrending(sort ? "desc" : "asc");
+  const { votedproduct } = useGetAllVotes();
 
   return (
     <div className="mb-24">
@@ -27,7 +29,11 @@ const Trending = () => {
         {isPending
           ? "loading data ..."
           : trending?.map((product) => (
-              <TrendingProduct key={product._id} product={product} />
+              <TrendingProduct
+                key={product._id}
+                product={product}
+                votedproduct={votedproduct}
+              />
             ))}
       </div>
       <div className="flex justify-center mt-10">

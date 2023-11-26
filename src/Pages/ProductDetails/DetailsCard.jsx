@@ -5,13 +5,31 @@ import useVote from "../../Hooks/useVote";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 
 const DetailsCard = ({ product }) => {
+  const url = useLocation();
   const { user } = useAuth();
-  const handleVote = useVote();
   const axiosSecure = useAxiosSecure();
-
   const { _id, name, owner, img, description, tags, votes, time } = product;
+  const { handleVote, voted } = useVote(_id, votes);
+
+  const productId = url?.pathname.slice(9);
+  const { data: votedproduct } = useQuery({
+    queryKey: ["getallvotesfromdb"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/vote?email=${user?.email}&productId=${productId}`
+      );
+      return res.data;
+    },
+  });
+
+  const matchedproductuseremail = votedproduct?.useremail;
+  const matchedproductId = votedproduct?.productId;
+  const matched =
+    matchedproductId === _id && matchedproductuseremail === user?.email;
 
   const handleReport = async () => {
     const data = {
@@ -67,8 +85,11 @@ const DetailsCard = ({ product }) => {
           </div>
           <div className="absolute w-full bottom-0 left-0 flex gap-3">
             <button
+              disabled={voted || matched}
               onClick={handleVote}
-              className="flex justify-center items-center rounded-lg py-2 flex-1 w-full px-3 bg-red-600 text-white text-xl hover:bg-red-700 transition-all duration-300"
+              className={`flex justify-center items-center rounded-lg py-2 flex-1 w-full px-3 ${
+                voted || matched ? "bg-gray-400" : "bg-red-600"
+              } text-white text-xl hover:bg-red-700 transition-all duration-300`}
             >
               <MdHowToVote className="mr-2 text-2xl" /> {votes || 0}
             </button>
