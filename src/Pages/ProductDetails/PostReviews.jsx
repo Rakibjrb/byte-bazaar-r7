@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,6 @@ const PostReviews = ({ id, productName, refetch }) => {
     mutationKey: [id],
     mutationFn: async (data) => {
       const muted = await axiosSecure.post(`/reviews/${id}`, data);
-      console.log(muted.data);
       return muted;
     },
   });
@@ -23,6 +22,14 @@ const PostReviews = ({ id, productName, refetch }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["getReviews", id],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/reviews/${id}`);
+      return res.data;
+    },
+  });
 
   const onSubmit = async (review) => {
     const reviewData = {
@@ -37,6 +44,10 @@ const PostReviews = ({ id, productName, refetch }) => {
     Swal.fire("Thanks for share your review");
     refetch();
   };
+
+  const disablePostBtn = reviews?.find(
+    (review) => review.image === user.photoURL
+  );
 
   return (
     <div className="mt-8">
@@ -80,13 +91,22 @@ const PostReviews = ({ id, productName, refetch }) => {
           className="focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
           disabled
         />
-        <button className="text-center btn w-full col-span-2 bg-red-400 font-semibold text-white uppercase">
-          {mutation.isPending ? (
-            <ImSpinner3 className="text-xl animate-spin" />
-          ) : (
-            "Post Now"
-          )}
-        </button>
+        {disablePostBtn ? (
+          <button
+            disabled
+            className="text-center btn w-full col-span-2 bg-red-400 font-semibold text-white uppercase"
+          >
+            Already Reviewed
+          </button>
+        ) : (
+          <button className="text-center btn w-full col-span-2 bg-red-400 font-semibold text-white uppercase">
+            {mutation.isPending ? (
+              <ImSpinner3 className="text-xl animate-spin" />
+            ) : (
+              "Post Now"
+            )}
+          </button>
+        )}
       </form>
     </div>
   );
