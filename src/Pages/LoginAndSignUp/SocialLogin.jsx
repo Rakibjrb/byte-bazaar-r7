@@ -2,11 +2,14 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
+import moment from "moment/moment";
 import { ImSpinner3 } from "react-icons/im";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
   const [loading, setLoading] = useState(false);
+  const axios = useAxiosPublic();
   const location = useLocation();
   const navigate = useNavigate();
   const { googleLogin } = useAuth();
@@ -14,10 +17,23 @@ const SocialLogin = () => {
   const handleGoogleLogin = () => {
     setLoading(true);
     googleLogin()
-      .then(() => {
-        setLoading(false);
-        toast.success("Google Login Successfull ...");
-        navigate(location.state ? location?.state?.from : "/");
+      .then((res) => {
+        const userdata = {
+          name: res?.user?.displayName,
+          image: res?.user?.photoURL,
+          email: res?.user?.email,
+          date: moment().format("Y-M-D"),
+        };
+        axios
+          .post("/user", userdata)
+          .then(() => {
+            setLoading(false);
+            toast.success("Google Login Successfull ...");
+            navigate(location.state ? location?.state?.from : "/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         setLoading(false);

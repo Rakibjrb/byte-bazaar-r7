@@ -2,19 +2,22 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import moment from "moment/moment";
 import axios from "axios";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
 import { ImSpinner3 } from "react-icons/im";
 import loginsvg from "../../assets/login/Login.svg";
 import SocialLogin from "./SocialLogin";
-import useAuth from "../../Hooks/useAuth";
 import "./style.css";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
   const { emailPasswordSignUp, updateUserAccount } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -27,7 +30,7 @@ const Signup = () => {
     console.log(error);
   };
 
-  const onSubmit = (formData) => {
+  const onSubmit = async (formData) => {
     const image = formData.image[0];
     if (image.size / (1024 * 1024) > 2) {
       console.log(formData.image);
@@ -52,6 +55,20 @@ const Signup = () => {
             updateUserAccount(formData.name, imagelink)
               .then(() => {
                 setLoading(false);
+                const userdata = {
+                  name: formData?.name,
+                  image: imagelink,
+                  email: formData?.email,
+                  date: moment().format("Y-M-D"),
+                };
+                axiosPublic
+                  .post("/user", userdata)
+                  .then((res) => {
+                    console.log(res.data);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
                 toast.success("User account creation successfull ...");
                 navigate(location.state ? location.state?.from : "/");
               })
