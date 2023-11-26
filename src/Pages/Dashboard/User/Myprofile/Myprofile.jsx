@@ -1,10 +1,55 @@
 const Myprofile = () => {
   return (
-    <div>
-      <h1 className="text-2xl md:text-4xl">
-        Welcome, <span className="font-bold text-red-400">Rakibul Hasan!</span>
-      </h1>
-    </div>
+    <>
+      <div className="bg-gray-700 px-8 py-20 md:p-8 rounded-2xl mt-5 min-h-[60vh] 2xl:min-h-[50vh]">
+        <div className="flex justify-between flex-col md:flex-row">
+          <div className="flex justify-center md:justify-start">
+            <img
+              className="w-32 h-32 rounded-full border-4 border-white"
+              src="https://i.ibb.co/5x441PC/user.png"
+              alt=""
+            />
+          </div>
+          <div>
+            <h3 className="text-white mt-8 md:mt-0 text-xl md:text-2xl font-semibold">
+              Subscription Status :{" "}
+              <span className="text-red-500">Not verified</span>
+            </h3>
+            <h3 className="text-white md:text-right mt-3 text-xl font-semibold">
+              Joined on : 2023-11-27
+            </h3>
+            <div className="flex md:justify-end mt-5">
+              <button className="bg-red-800 text-white font-bold uppercase py-2 px-7 hover:bg-red-500 transition-colors duration-300 rounded-md">
+                Subscribe for 100$
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="space-y-5 mt-10">
+          <h3 className="text-white text-2xl md:text-3xl font-semibold">
+            Name : Rakibul Hasan
+          </h3>
+          <h3 className="text-white text-xl md:text-3xl font-semibold">
+            Email : rakibjrb572157@gmail.com
+          </h3>
+        </div>
+        <div className="stats bg-red-50 shadow flex flex-col md:flex-row mt-20 gap-5">
+          <div className="stat">
+            <div className="stat-title text-2xl">Reviewed</div>
+            <div className="stat-value">{50}+</div>
+          </div>
+          <div className="stat">
+            <div className="stat-title text-2xl">Voted</div>
+            <div className="stat-value">{330}+</div>
+          </div>
+
+          <div className="stat">
+            <div className="stat-title text-2xl">Reported</div>
+            <div className="stat-value">{10}+</div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
