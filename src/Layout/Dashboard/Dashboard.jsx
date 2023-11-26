@@ -1,15 +1,7 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import { useEffect } from "react";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const redirect = () => navigate("/dashboard/profile");
-
-  useEffect(() => {
-    redirect();
-  }, []);
-
   return (
     <div className="lg:bg-gray-300">
       <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto">
