@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import Button from "../../Components/Common/Button";
 
 import "./nav.css";
+import useGetUser from "../../Hooks/useGetUser";
 
 const navlinks = (
   <>
@@ -37,6 +38,7 @@ const navlinks = (
 const Nav = () => {
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
+  const { userDataFromDB } = useGetUser();
   const [sticky, setSticky] = useState(false);
 
   const handleLogout = () => {
@@ -58,11 +60,27 @@ const Nav = () => {
           <FaUser /> {(user && user.displayName) || "user19419"}
         </a>
       </li>
-      <li>
-        <Link to="/dashboard/profile">
-          <MdDashboard /> Dashboard
-        </Link>
-      </li>
+      {userDataFromDB?.role === "User" && (
+        <li>
+          <Link to="/dashboard/profile">
+            <MdDashboard /> Dashboard
+          </Link>
+        </li>
+      )}
+      {userDataFromDB?.role === "Moderator" && (
+        <li>
+          <Link to="/dashboard/review-queue">
+            <MdDashboard /> Dashboard
+          </Link>
+        </li>
+      )}
+      {userDataFromDB?.role === "Admin" && (
+        <li>
+          <Link to="/dashboard/statistics">
+            <MdDashboard /> Dashboard
+          </Link>
+        </li>
+      )}
       <li>
         <button onClick={handleLogout}>
           <MdOutlineLogout /> Logout

@@ -6,7 +6,7 @@ import { ImSpinner3 } from "react-icons/im";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-const PostReviews = ({ id, productName, refetch }) => {
+const PostReviews = ({ id, productName }) => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const mutation = useMutation({
@@ -43,7 +43,6 @@ const PostReviews = ({ id, productName, refetch }) => {
 
     await mutation.mutate(reviewData);
     Swal.fire("Thanks for share your review");
-    refetch();
   };
 
   const disablePostBtn = reviews?.find(

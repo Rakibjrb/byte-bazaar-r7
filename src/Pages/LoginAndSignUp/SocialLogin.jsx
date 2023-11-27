@@ -24,6 +24,7 @@ const SocialLogin = () => {
           email: res?.user?.email,
           date: moment().format("Y-M-D"),
           subscription: "User",
+          role: "User",
         };
         axios
           .post("/user", userdata)

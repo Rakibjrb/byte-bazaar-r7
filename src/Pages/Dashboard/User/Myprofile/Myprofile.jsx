@@ -1,23 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../Hooks/useAuth";
-import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useTotalVote from "../../../../Hooks/DashboardData/useTotalVote";
 import useTotalReviews from "../../../../Hooks/DashboardData/useTotalReviews";
 import useTotalReports from "../../../../Hooks/DashboardData/useTotalReports";
+import useGetUser from "../../../../Hooks/useGetUser";
 
 const Myprofile = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const { userDataFromDB } = useGetUser();
   const { totalVotes } = useTotalVote();
   const { totalReviews } = useTotalReviews();
   const { totalreports } = useTotalReports();
-  const { data: userDataFromDB } = useQuery({
-    queryKey: ["getsingleuser", user?.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/user/${user?.email}`);
-      return res.data;
-    },
-  });
 
   return (
     <>

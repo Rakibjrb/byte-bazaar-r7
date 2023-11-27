@@ -4,6 +4,7 @@ import { FaShop } from "react-icons/fa6";
 import { MdAddCard } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import useAuth from "../../Hooks/useAuth";
+import useGetUser from "../../Hooks/useGetUser";
 
 const userlinks = (
   <>
@@ -85,13 +86,14 @@ const admin = (
 );
 
 const Sidebar = () => {
+  const { userDataFromDB } = useGetUser();
   const { logOut } = useAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
     navigate("/");
     logOut();
   };
-  const user = "User";
+  const user = userDataFromDB?.role || "User";
 
   return (
     <div className="sticky top-0 left-0 p-4 w-[320px] md:w-1/2 lg:w-80 lg:mr-3 h-screen bg-gray-700 text-white">
