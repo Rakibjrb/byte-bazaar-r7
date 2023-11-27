@@ -12,7 +12,7 @@ const useVote = (id, votes) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const { refetch: refetchProductById } = useProductById(id);
+  const { refetchProductById } = useProductById(id);
   const [, , refetchtrending] = useTrending(voted ? "desc" : "asc");
   const [, , refetchfeatured] = useFeatured(voted ? "desc" : "asc");
 
@@ -26,11 +26,11 @@ const useVote = (id, votes) => {
       useremail: user?.email,
     };
     const res = await axiosSecure.post("/vote", voteData);
+    setVoted(true);
     refetchtrending();
     refetchfeatured();
     refetchProductById();
     res.data && Swal.fire("Voted");
-    setVoted(true);
   };
   return { handleVote, voted };
 };

@@ -7,6 +7,7 @@ import NotFound from "../../Components/Common/NotFound";
 import useGetAllVotes from "../../Hooks/useGetAllVotes";
 
 const Products = () => {
+  let count = 0;
   const axios = useAxiosPublic();
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -53,7 +54,7 @@ const Products = () => {
         ) : (
           allProducts?.map((product) => (
             <Card
-              key={product._id}
+              key={`${product?._id}${count++}`}
               product={product}
               votedproduct={votedproduct}
             />

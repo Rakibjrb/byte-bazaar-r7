@@ -1,27 +1,68 @@
 import { useForm } from "react-hook-form";
-import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
+import { useState } from "react";
+import axios from "axios";
 import moment from "moment/moment";
+import { ImSpinner3 } from "react-icons/im";
+import useAuth from "../../../../Hooks/useAuth";
+import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
-  const { register, handleSubmit } = useForm();
+  const [uloading, setUploading] = useState(false);
+  const { user } = useAuth();
+  const { register, handleSubmit, reset } = useForm();
+  const axiosSecure = useAxiosSecure();
 
   const onSubmit = (info) => {
+    setUploading(true);
     const img = info?.image[0];
     const tags = info?.tags.split(" ");
 
-    const productInfo = {
-      name: info?.name,
-      img,
-      price: parseInt(info?.price),
-      description: info?.description,
-      time: moment().format("Y-M-D"),
-      votes: 0,
-      category: info.category,
-      tags,
-      status: "Pending",
-    };
+    const body = new FormData();
+    body.set("key", import.meta.env.VITE_imgbb_api_key);
+    body.append("image", img);
 
-    console.log(productInfo);
+    axios({
+      method: "post",
+      url: "https://api.imgbb.com/1/upload",
+      data: body,
+    })
+      .then((res) => {
+        const imagelink = res.data?.data?.url;
+        const productInfo = {
+          name: info?.name,
+          img: imagelink,
+          price: parseInt(info?.price),
+          description: info?.description,
+          time: moment().format("Y-M-D"),
+          votes: 0,
+          category: info.category,
+          tags,
+          status: "Pending",
+          owner: {
+            name: user?.displayName,
+            image: user?.photoURL,
+            email: user?.email,
+          },
+        };
+
+        axiosSecure
+          .post("/product", productInfo)
+          .then((res) => {
+            if (res.data) {
+              Swal.fire("Product successfully added");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        reset();
+        setUploading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -88,7 +129,7 @@ const AddProduct = () => {
             <input
               type="text"
               {...register("tags", { required: true })}
-              placeholder="example #computer #motherboard"
+              placeholder="example computer motherboard"
               className="input input-bordered w-full placeholder:text-gray-400"
             />
           </div>
@@ -122,7 +163,11 @@ const AddProduct = () => {
             type="submit"
             className="btn w-full font-semibold uppercase bg-red-800 text-white hover:bg-red-500"
           >
-            Add Now
+            {uloading ? (
+              <ImSpinner3 className="text-xl animate-spin" />
+            ) : (
+              "Add Now"
+            )}
           </button>
         </form>
       </div>

@@ -7,7 +7,7 @@ const useProductById = (id) => {
   const {
     data = {},
     isPending,
-    refetch,
+    refetch: refetchProductById,
   } = useQuery({
     queryKey: ["singleProduct", id],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const useProductById = (id) => {
       return res.data;
     },
   });
-  return { data, isPending, refetch };
+  return { data, isPending, refetchProductById };
 };
 
 export default useProductById;
