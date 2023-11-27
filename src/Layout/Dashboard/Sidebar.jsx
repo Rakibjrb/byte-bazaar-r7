@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { FaShop } from "react-icons/fa6";
 import { MdAddCard } from "react-icons/md";
@@ -86,6 +86,11 @@ const admin = (
 
 const Sidebar = () => {
   const { logOut } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    navigate("/");
+    logOut();
+  };
   const user = "User";
 
   return (
@@ -104,7 +109,7 @@ const Sidebar = () => {
             <FaShop className="text-3xl" /> Go Home
           </Link>
           <button
-            onClick={logOut}
+            onClick={handleLogout}
             className="text-xl flex items-center gap-3 mt-5"
           >
             <LuLogOut className="text-3xl" /> Logout

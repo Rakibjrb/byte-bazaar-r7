@@ -15,8 +15,15 @@ const AddProduct = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = (info) => {
-    setUploading(true);
     const img = info?.image[0];
+    const imgsize = img.size / (1024 * 1024);
+
+    if (imgsize > 4) {
+      Swal.fire("Select image under 4MB");
+      return;
+    }
+    setUploading(true);
+
     const tags = info?.tags.split(" ");
 
     const body = new FormData();

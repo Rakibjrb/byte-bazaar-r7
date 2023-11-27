@@ -1,5 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import useAuth from "../../../../Hooks/useAuth";
+import Product from "./Product";
+
 const MyProducts = () => {
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+
+  const { data: ownerProducts } = useQuery({
+    queryKey: ["getdataforuser"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(
+        `/product/all?search=null&email=${user?.email}`
+      );
+      return res.data;
+    },
+  });
+
   return (
     <div className="md:mt-16">
       <div className="hidden md:block">
@@ -9,7 +27,7 @@ const MyProducts = () => {
         <SectionHeader title={"My All Products"} />
       </div>
       <div className="overflow-x-auto">
-        <div className="md:w-auto">
+        <div className="md:w-auto mt-6">
           <table className="table">
             <thead>
               <tr>
@@ -22,93 +40,9 @@ const MyProducts = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th className="text-xl">1.</th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">
-                        Date : 2023-11-23
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="font-semibold">10+</td>
-                <td>
-                  <div className="btn btn-sm hover:bg-red-700 bg-red-700 text-white uppercase">
-                    Pending
-                  </div>
-                </td>
-                <th>
-                  <button className="btn uppercase text-white btn-sm bg-gray-500 hover:bg-gray-400">
-                    Update
-                  </button>
-                </th>
-                <th>
-                  <button className="btn uppercase text-white btn-sm bg-red-700 hover:bg-red-800">
-                    Delete
-                  </button>
-                </th>
-              </tr>
-              <tr>
-                <th className="text-xl">2.</th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <div className="font-bold">Brice Swyre</div>
-                      <div className="text-sm opacity-50">
-                        Date : 2023-11-23
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="font-semibold">20+</td>
-                <td>
-                  <div className="btn btn-sm hover:bg-red-700 bg-red-700 text-white uppercase">
-                    Pending
-                  </div>
-                </td>
-                <th>
-                  <button className="btn uppercase text-white btn-sm bg-gray-500 hover:bg-gray-400">
-                    Update
-                  </button>
-                </th>
-                <th>
-                  <button className="btn uppercase text-white btn-sm bg-red-700 hover:bg-red-800">
-                    Delete
-                  </button>
-                </th>
-              </tr>
-              <tr>
-                <th className="text-xl">3.</th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div>
-                      <div className="font-bold">Marjy Ferencz</div>
-                      <div className="text-sm opacity-50">
-                        Date : 2023-11-23
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="font-semibold">50+</td>
-                <td>
-                  <div className="btn btn-sm hover:bg-red-700 bg-red-700 text-white uppercase">
-                    Pending
-                  </div>
-                </td>
-                <th>
-                  <button className="btn uppercase text-white btn-sm bg-gray-500 hover:bg-gray-400">
-                    Update
-                  </button>
-                </th>
-                <th>
-                  <button className="btn uppercase text-white btn-sm bg-red-700 hover:bg-red-800">
-                    Delete
-                  </button>
-                </th>
-              </tr>
+              {ownerProducts?.map((product, index) => (
+                <Product key={product._id} product={product} index={index} />
+              ))}
             </tbody>
           </table>
         </div>
