@@ -8,7 +8,7 @@ const MyProducts = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const { data: ownerProducts } = useQuery({
+  const { data: ownerProducts, refetch } = useQuery({
     queryKey: ["getdataforuser"],
     queryFn: async () => {
       const res = await axiosSecure.get(
@@ -41,7 +41,12 @@ const MyProducts = () => {
             </thead>
             <tbody>
               {ownerProducts?.map((product, index) => (
-                <Product key={product._id} product={product} index={index} />
+                <Product
+                  key={product._id}
+                  product={product}
+                  index={index}
+                  refetch={refetch}
+                />
               ))}
             </tbody>
           </table>

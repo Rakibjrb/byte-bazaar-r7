@@ -1,7 +1,32 @@
 import PropTypes from "prop-types";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
-const Product = ({ product, index }) => {
-  const { name, time, votes, status } = product;
+const Product = ({ product, index, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+  const { _id, name, time, votes, status } = product;
+
+  const handleDeleteProduct = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/product/${id}`)
+          .then((res) => {
+            res.data && refetch();
+            Swal.fire("Delete!");
+          })
+          .catch((err) => err && toast.error("something went wrong"));
+      }
+    });
+  };
 
   return (
     <tr>
@@ -38,7 +63,10 @@ const Product = ({ product, index }) => {
         </button>
       </th>
       <th>
-        <button className="btn uppercase text-white btn-sm bg-red-700 hover:bg-red-800">
+        <button
+          onClick={() => handleDeleteProduct(_id)}
+          className="btn uppercase text-white btn-sm bg-red-700 hover:bg-red-800"
+        >
           Delete
         </button>
       </th>
@@ -49,5 +77,6 @@ const Product = ({ product, index }) => {
 Product.propTypes = {
   product: PropTypes.object,
   index: PropTypes.number,
+  refetch: PropTypes.func,
 };
 export default Product;
