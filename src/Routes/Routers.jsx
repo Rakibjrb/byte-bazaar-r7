@@ -17,6 +17,7 @@ import ReportedProducts from "../Pages/Dashboard/Moderator/ReportedProducts/Repo
 import Statistics from "../Pages/Dashboard/Admin/Statistics/Statistics";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import ManageCupons from "../Pages/Dashboard/Admin/ManageCupons/ManageCupons";
+import UpdateProduct from "../Pages/Dashboard/User/MyProducts/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "my-products",
         element: <MyProducts />,
+      },
+      {
+        path: "update-product/:id",
+        element: <UpdateProduct />,
       },
       {
         path: "review-queue",

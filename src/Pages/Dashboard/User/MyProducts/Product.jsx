@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Product = ({ product, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -58,9 +59,12 @@ const Product = ({ product, index, refetch }) => {
         )}
       </td>
       <th>
-        <button className="btn uppercase text-white btn-sm bg-gray-500 hover:bg-gray-400">
+        <Link
+          to={`/dashboard/update-product/${_id}`}
+          className="btn uppercase text-white btn-sm bg-gray-500 hover:bg-gray-400"
+        >
           Update
-        </button>
+        </Link>
       </th>
       <th>
         <button
