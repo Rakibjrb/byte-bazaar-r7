@@ -35,6 +35,7 @@ const PostReviews = ({ id, productName, refetch }) => {
     const reviewData = {
       productId: id,
       name: user.displayName,
+      email: user.email,
       image: user.photoURL,
       rating: review.rating,
       testimonial: review.testimonial,

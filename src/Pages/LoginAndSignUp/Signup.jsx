@@ -60,6 +60,7 @@ const Signup = () => {
                   image: imagelink,
                   email: formData?.email,
                   date: moment().format("Y-M-D"),
+                  subscription: "User",
                 };
                 axiosPublic
                   .post("/user", userdata)

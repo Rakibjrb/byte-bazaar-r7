@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { FaShop } from "react-icons/fa6";
 import { MdAddCard } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
+import useAuth from "../../Hooks/useAuth";
 
 const userlinks = (
   <>
@@ -84,6 +85,7 @@ const admin = (
 );
 
 const Sidebar = () => {
+  const { logOut } = useAuth();
   const user = "User";
 
   return (
@@ -98,7 +100,13 @@ const Sidebar = () => {
         )}
         {user === "Admin" && <ul className="space-y-6 px-5">{admin}</ul>}
         <div className="absolute bottom-16 px-5 w-full">
-          <button className="text-xl flex items-center gap-3">
+          <Link to="/" className="text-xl flex items-center gap-3">
+            <FaShop className="text-3xl" /> Go Home
+          </Link>
+          <button
+            onClick={logOut}
+            className="text-xl flex items-center gap-3 mt-5"
+          >
             <LuLogOut className="text-3xl" /> Logout
           </button>
         </div>

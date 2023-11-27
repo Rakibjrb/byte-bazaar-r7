@@ -23,6 +23,7 @@ const SocialLogin = () => {
           image: res?.user?.photoURL,
           email: res?.user?.email,
           date: moment().format("Y-M-D"),
+          subscription: "User",
         };
         axios
           .post("/user", userdata)
