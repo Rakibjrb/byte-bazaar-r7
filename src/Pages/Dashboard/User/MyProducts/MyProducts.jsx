@@ -1,17 +1,16 @@
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 const MyProducts = () => {
   return (
-    <div className="md:mt-10">
+    <div className="md:mt-16">
       <div className="hidden md:block">
         <SectionHeader subtitle={"--My Products--"} title={"My All Products"} />
       </div>
       <div className="md:hidden">
         <SectionHeader title={"My All Products"} />
       </div>
-      <div>
-        <div className="overflow-x-auto">
+      <div className="overflow-x-auto">
+        <div className="md:w-auto">
           <table className="table">
-            {/* head */}
             <thead>
               <tr>
                 <th className="text-xl">SL No.</th>
@@ -23,7 +22,6 @@ const MyProducts = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
               <tr>
                 <th className="text-xl">1.</th>
                 <td>
@@ -53,7 +51,6 @@ const MyProducts = () => {
                   </button>
                 </th>
               </tr>
-              {/* row 2 */}
               <tr>
                 <th className="text-xl">2.</th>
                 <td>
@@ -83,7 +80,6 @@ const MyProducts = () => {
                   </button>
                 </th>
               </tr>
-              {/* row 3 */}
               <tr>
                 <th className="text-xl">3.</th>
                 <td>

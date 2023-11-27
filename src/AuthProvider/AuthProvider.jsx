@@ -68,9 +68,15 @@ const AuthProvider = ({ children }) => {
 
       if (user) {
         const email = user.email;
-        axios.post("/create-token", { email });
+        axios
+          .post("/create-token", { email })
+          .then((res) => console.log(res.data))
+          .catch((err) => console.log(err));
       } else {
-        axios.get("/clear-cookie");
+        axios
+          .get("/clear-cookie")
+          .then((res) => console.log(res.data))
+          .catch((err) => console.log(err));
       }
     });
 

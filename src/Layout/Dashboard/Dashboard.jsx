@@ -6,7 +6,7 @@ const Dashboard = () => {
     <div className="lg:bg-gray-300">
       <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto">
         <input type="checkbox" id="my-drawer" className="drawer-toggle" />
-        <div className="drawer-content bg-red-300 md:bg-transparent px-3 pt-3 xl:pt-0 xl:px-0">
+        <div className="drawer-content px-3 xl:px-0">
           <label
             htmlFor="my-drawer"
             className="btn bg-gray-600 text-white drawer-button lg:hidden"

@@ -4,7 +4,7 @@ import Footer from "./Layout/Main/Footer";
 
 function App() {
   return (
-    <div data-theme="white">
+    <div data-theme="light">
       <Nav />
       <Outlet />
       <Footer />

@@ -87,7 +87,7 @@ const Sidebar = () => {
   const user = "User";
 
   return (
-    <div className="sticky top-0 left-0 p-4 w-4/5 md:w-1/2 lg:w-80 lg:mr-3 h-screen bg-gray-700 text-white">
+    <div className="sticky top-0 left-0 p-4 w-[320px] md:w-1/2 lg:w-80 lg:mr-3 h-screen bg-gray-700 text-white">
       <div className="min-h-screen relative">
         <div className="mb-10 flex justify-center items-center h-20">
           <h2 className="text-2xl">Dashboard</h2>

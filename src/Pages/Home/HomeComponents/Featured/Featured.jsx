@@ -31,15 +31,17 @@ const Featured = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-10">
-        {isPending
-          ? "loadin data ..."
-          : featured?.map((product) => (
-              <Card
-                key={product._id}
-                product={product}
-                votedproduct={votedproduct}
-              />
-            ))}
+        {isPending ? (
+          <span className="loading loading-dots loading-lg"></span>
+        ) : (
+          featured?.map((product) => (
+            <Card
+              key={product._id}
+              product={product}
+              votedproduct={votedproduct}
+            />
+          ))
+        )}
       </div>
     </div>
   );

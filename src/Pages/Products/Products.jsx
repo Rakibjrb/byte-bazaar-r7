@@ -48,15 +48,17 @@ const Products = () => {
         </form>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {isPending
-          ? "loading data ..."
-          : allProducts?.map((product) => (
-              <Card
-                key={product._id}
-                product={product}
-                votedproduct={votedproduct}
-              />
-            ))}
+        {isPending ? (
+          <span className="loading loading-dots loading-lg"></span>
+        ) : (
+          allProducts?.map((product) => (
+            <Card
+              key={product._id}
+              product={product}
+              votedproduct={votedproduct}
+            />
+          ))
+        )}
       </div>
       <div className={`${allProducts?.length ? "hidden" : ""}`}>
         <NotFound />
