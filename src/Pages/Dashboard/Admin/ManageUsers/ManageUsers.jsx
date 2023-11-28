@@ -3,7 +3,7 @@ import useGellAllUsers from "../../../../Hooks/DashboardData/useGellAllUsers";
 import User from "./User";
 
 const ManageUsers = () => {
-  const { allusers } = useGellAllUsers();
+  const { allusers, refetch } = useGellAllUsers();
 
   return (
     <div className="mt-8">
@@ -21,13 +21,18 @@ const ManageUsers = () => {
                 <th>SL No.</th>
                 <th>Name</th>
                 <th>User Email</th>
-                <th>Make Moderator</th>
                 <th>Make Admin</th>
+                <th>Make Moderator</th>
               </tr>
             </thead>
             <tbody>
               {allusers?.map((user, index) => (
-                <User key={user._id} user={user} index={index} />
+                <User
+                  key={user._id}
+                  user={user}
+                  index={index}
+                  refetch={refetch}
+                />
               ))}
             </tbody>
           </table>

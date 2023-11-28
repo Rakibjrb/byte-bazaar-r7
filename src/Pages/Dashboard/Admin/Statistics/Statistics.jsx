@@ -1,9 +1,16 @@
+import useAuth from "../../../../Hooks/useAuth";
+
 const Statistics = () => {
+  const { user } = useAuth();
+
   return (
     <div>
       <div>
         <h1 className="text-2xl md:text-4xl">
-          HI, <span className="font-bold text-red-400">Rakibul Hasan!</span>
+          HI,{" "}
+          <span className="font-bold text-red-400">
+            {user?.displayName || " Rakibul Hasan!"}
+          </span>
         </h1>
       </div>
 
