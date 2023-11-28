@@ -15,6 +15,9 @@ const ManageUsers = () => {
       </div>
       <div className="overflow-x-auto">
         <div className="md:w-auto mt-6">
+          <h2 className="text-xl font-bold mb-8">
+            Total Users : {allusers?.length || 0}
+          </h2>
           <table className="table">
             <thead>
               <tr>
