@@ -18,6 +18,7 @@ import Statistics from "../Pages/Dashboard/Admin/Statistics/Statistics";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import ManageCupons from "../Pages/Dashboard/Admin/ManageCupons/ManageCupons";
 import UpdateProduct from "../Pages/Dashboard/User/MyProducts/UpdateProduct";
+import ModeratorRoutes from "./ModeratorRoutes";
 
 const router = createBrowserRouter([
   {
@@ -99,17 +100,21 @@ const router = createBrowserRouter([
       {
         path: "review-queue",
         element: (
-          <PrivateRoute>
-            <ReviewQueue />
-          </PrivateRoute>
+          <ModeratorRoutes>
+            <PrivateRoute>
+              <ReviewQueue />
+            </PrivateRoute>
+          </ModeratorRoutes>
         ),
       },
       {
         path: "reported-products",
         element: (
-          <PrivateRoute>
-            <ReportedProducts />
-          </PrivateRoute>
+          <ModeratorRoutes>
+            <PrivateRoute>
+              <ReportedProducts />
+            </PrivateRoute>
+          </ModeratorRoutes>
         ),
       },
       //admin routes

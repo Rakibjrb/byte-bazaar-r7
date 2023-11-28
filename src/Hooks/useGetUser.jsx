@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 const useGetUser = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: userDataFromDB } = useQuery({
+  const { data: userDataFromDB, isPending } = useQuery({
     queryKey: ["getsingleuser", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/user/${user?.email}`);
@@ -13,7 +13,7 @@ const useGetUser = () => {
     },
   });
 
-  return { userDataFromDB };
+  return { userDataFromDB, isPending };
 };
 
 export default useGetUser;
