@@ -1,3 +1,4 @@
+import moment from "moment/moment";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -43,7 +44,7 @@ const Footer = () => {
       </div>
       <div className="bg-[#000000] py-8">
         <p className="text-center text-white">
-          2023 All right reserved by bytebazaar
+          {moment().format("Y")} All right reserved by bytebazaar
         </p>
       </div>
     </>

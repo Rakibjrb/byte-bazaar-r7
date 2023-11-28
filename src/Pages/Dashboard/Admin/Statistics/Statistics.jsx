@@ -1,14 +1,16 @@
+import Piechart from "./Piechart";
 import useTotalReports from "../../../../Hooks/DashboardData/useTotalReports";
 import useTotalReviews from "../../../../Hooks/DashboardData/useTotalReviews";
 import useTotalVote from "../../../../Hooks/DashboardData/useTotalVote";
 import useAuth from "../../../../Hooks/useAuth";
-import Piechart from "./Piechart";
+import useAllProductCount from "../../../../Hooks/DashboardData/useAllProductCount";
 
 const Statistics = () => {
   const { user } = useAuth();
   const { totalreports } = useTotalReports();
   const { totalVotes } = useTotalVote();
   const { totalReviews } = useTotalReviews();
+  const { totalproducts } = useAllProductCount();
 
   return (
     <div>
@@ -25,6 +27,10 @@ const Statistics = () => {
         <div className="stat">
           <div className="stat-title text-xl xl:text-2xl">Reviews</div>
           <div className="stat-value">{totalReviews?.length || 0}+</div>
+        </div>
+        <div className="stat">
+          <div className="stat-title text-xl xl:text-2xl">Total Products</div>
+          <div className="stat-value">{totalproducts || 0}+</div>
         </div>
         <div className="stat">
           <div className="stat-title text-xl xl:text-2xl">Votes</div>
@@ -45,6 +51,7 @@ const Statistics = () => {
             totalReviews={totalReviews}
             totalVotes={totalVotes}
             totalreports={totalreports}
+            totalproducts={totalproducts}
           />
         </div>
       </div>

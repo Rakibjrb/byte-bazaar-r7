@@ -5,6 +5,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Card from "../../Components/ProductCard/Card";
 import NotFound from "../../Components/Common/NotFound";
 import useGetAllVotes from "../../Hooks/useGetAllVotes";
+import useAllProductCount from "../../Hooks/DashboardData/useAllProductCount";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -14,13 +15,7 @@ const Products = () => {
 
   let count = 0;
   const axios = useAxiosPublic();
-  const { data: totalproducts = 1 } = useQuery({
-    queryKey: ["documentcount"],
-    queryFn: async () => {
-      const res = await axios.get("/document-count");
-      return res.data.totalDocuments;
-    },
-  });
+  const { data: totalproducts = 1 } = useAllProductCount();
 
   const { data, isPending } = useQuery({
     queryKey: ["all_products", searchText],
@@ -30,7 +25,7 @@ const Products = () => {
     },
   });
 
-  const perpage = 12;
+  const perpage = 20;
 
   const { data: paginationdata } = useQuery({
     queryKey: ["paginationproducts", currentPage],
@@ -76,51 +71,55 @@ const Products = () => {
           </button>
         </form>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {isPending ? (
-          <span className="loading loading-dots loading-lg"></span>
-        ) : (
-          allProducts?.map((product) => (
+      {isPending ? (
+        <div className="flex justify-center items-center h-[300px]">
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {allProducts?.map((product) => (
             <Card
               key={`${product?._id}${count++}`}
               product={product}
               votedproduct={votedproduct}
             />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
 
-      <div className="mt-8 max-w-3xl mx-auto flex justify-center flex-wrap space-x-2 px-3 xl:px-0">
-        <button
-          disabled={currentPage === 0}
-          className="btn btn-sm"
-          onClick={() => {
-            setCurrentPage(currentPage - 1);
-          }}
-        >
-          Prev
-        </button>
-        {pages?.map((page) => (
+      {allProducts?.length && (
+        <div className="mt-8 max-w-3xl mx-auto flex justify-center flex-wrap space-x-2 px-3 xl:px-0">
           <button
-            key={`paginationbtn${page}`}
-            className={`${currentPage === page && "bg-red-400"} btn btn-sm`}
-            onClick={() => setCurrentPage(page)}
+            disabled={currentPage === 0}
+            className="btn btn-sm"
+            onClick={() => {
+              setCurrentPage(currentPage - 1);
+            }}
           >
-            {page}
+            Prev
           </button>
-        ))}
-        <button
-          disabled={currentPage === pages?.length - 1}
-          className="btn btn-sm"
-          onClick={() => {
-            setCurrentPage(currentPage + 1);
-          }}
-        >
-          Next
-        </button>
-      </div>
+          {pages?.map((page) => (
+            <button
+              key={`paginationbtn${page}`}
+              className={`${currentPage === page && "bg-red-400"} btn btn-sm`}
+              onClick={() => setCurrentPage(page)}
+            >
+              {page}
+            </button>
+          ))}
+          <button
+            disabled={currentPage === pages?.length - 1}
+            className="btn btn-sm"
+            onClick={() => {
+              setCurrentPage(currentPage + 1);
+            }}
+          >
+            Next
+          </button>
+        </div>
+      )}
 
-      <div className={`${allProducts?.length ? "hidden" : ""}`}>
+      <div className={`${!allProducts?.length ? "" : "hidden"}`}>
         <NotFound />
       </div>
     </div>

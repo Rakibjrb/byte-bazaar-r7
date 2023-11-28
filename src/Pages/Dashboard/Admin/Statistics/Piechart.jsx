@@ -1,11 +1,17 @@
 import { Cell, Pie, PieChart } from "recharts";
 import PropTypes from "prop-types";
 
-const Piechart = ({ totalReviews, totalVotes, totalreports }) => {
+const Piechart = ({
+  totalReviews,
+  totalVotes,
+  totalreports,
+  totalproducts,
+}) => {
   const data = [
     { name: "Total Reviews", value: totalReviews?.length },
     { name: "Total Votes", value: totalVotes?.length },
     { name: "Total Reports", value: totalreports?.length },
+    { name: "Total Products", value: totalproducts },
   ];
 
   const COLORS = ["#FFBB28", "#FF8042", "#0088FE", "#00C49F"];
@@ -60,5 +66,6 @@ Piechart.propTypes = {
   totalReviews: PropTypes.array,
   totalVotes: PropTypes.array,
   totalreports: PropTypes.array,
+  totalproducts: PropTypes.number,
 };
 export default Piechart;
