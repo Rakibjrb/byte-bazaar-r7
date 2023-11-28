@@ -20,8 +20,8 @@ const ReportedProducts = () => {
       <div className="md:mt-16">
         <div className="hidden md:block">
           <SectionHeader
-            subtitle={"--Products Queue--"}
-            title={"Review Products Queue"}
+            subtitle={"--Reported--"}
+            title={"Reported Products"}
           />
         </div>
         <div className="md:hidden">

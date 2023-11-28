@@ -7,10 +7,21 @@ const Reported = ({ product, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const { _id, name, time } = product;
 
-  const handleDeleteReported = async () => {
-    const res = await axiosSecure.delete(`/delete-reported-product/${_id}`);
-    res.data.deletedCount > 0 && Swal.fire("Product successfully deleted");
-    refetch();
+  const handleDeleteReported = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/delete-reported-product/${_id}`);
+        res.data.deletedCount > 0 && Swal.fire("Product successfully deleted");
+        refetch();
+      }
+    });
   };
 
   return (
