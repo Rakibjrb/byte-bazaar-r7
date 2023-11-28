@@ -73,35 +73,69 @@ const router = createBrowserRouter([
       },
       {
         path: "add-product",
-        element: <AddProduct />,
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-products",
-        element: <MyProducts />,
+        element: (
+          <PrivateRoute>
+            <MyProducts />
+          </PrivateRoute>
+        ),
       },
       {
         path: "update-product/:id",
-        element: <UpdateProduct />,
+        element: (
+          <PrivateRoute>
+            <UpdateProduct />
+          </PrivateRoute>
+        ),
       },
+      //moderator routes
       {
         path: "review-queue",
-        element: <ReviewQueue />,
+        element: (
+          <PrivateRoute>
+            <ReviewQueue />
+          </PrivateRoute>
+        ),
       },
       {
         path: "reported-products",
-        element: <ReportedProducts />,
+        element: (
+          <PrivateRoute>
+            <ReportedProducts />
+          </PrivateRoute>
+        ),
       },
+      //admin routes
       {
         path: "statistics",
-        element: <Statistics />,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manage-cupons",
-        element: <ManageCupons />,
+        element: (
+          <PrivateRoute>
+            <ManageCupons />
+          </PrivateRoute>
+        ),
       },
     ],
   },
