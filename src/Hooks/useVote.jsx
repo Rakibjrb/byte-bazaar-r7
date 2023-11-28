@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import useAuth from "./useAuth";
-import useAxiosSecure from "./useAxiosSecure";
-import Swal from "sweetalert2";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "./useAuth";
 import useProductById from "./useProductById";
 import useTrending from "./useTrending";
+import useAxiosSecure from "./useAxiosSecure";
 import useFeatured from "./useFeatured";
 
 const useVote = (id, votes) => {
