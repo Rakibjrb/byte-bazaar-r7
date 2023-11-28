@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const Reported = ({ product, index, refetch }) => {
   const axiosSecure = useAxiosSecure();
-  const { _id, name, time } = product;
+  const { _id, productId, name, time } = product;
 
   const handleDeleteReported = () => {
     Swal.fire({
@@ -37,7 +37,7 @@ const Reported = ({ product, index, refetch }) => {
       </td>
       <th>
         <Link
-          to={`/product/${_id}`}
+          to={`/product/${productId}`}
           className="btn uppercase text-white btn-sm bg-gray-500 hover:bg-gray-400"
         >
           View Details

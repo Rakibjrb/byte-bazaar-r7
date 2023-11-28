@@ -30,7 +30,7 @@ const Products = () => {
     },
   });
 
-  const perpage = 8;
+  const perpage = 12;
 
   const { data: paginationdata } = useQuery({
     queryKey: ["paginationproducts", currentPage],
