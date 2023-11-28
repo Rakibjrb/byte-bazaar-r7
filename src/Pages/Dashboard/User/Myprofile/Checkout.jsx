@@ -75,7 +75,7 @@ const Checkout = ({ amount, setShowCheckoutForm }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [axios]);
+  }, []);
 
   return (
     <form onSubmit={handlePayment}>
