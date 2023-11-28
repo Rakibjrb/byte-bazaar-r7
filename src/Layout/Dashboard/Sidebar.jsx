@@ -3,6 +3,8 @@ import { CgProfile } from "react-icons/cg";
 import { FaShop } from "react-icons/fa6";
 import { MdAddCard } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
+import { TbDiscountCheckFilled } from "react-icons/tb";
+import { GrUserManager } from "react-icons/gr";
 import useAuth from "../../Hooks/useAuth";
 import useGetUser from "../../Hooks/useGetUser";
 
@@ -71,7 +73,7 @@ const admin = (
         className="text-xl flex items-center gap-3"
         to="/dashboard/manage-users"
       >
-        <MdAddCard className="text-3xl" /> Manage Users
+        <GrUserManager className="text-3xl" /> Manage Users
       </NavLink>
     </li>
     <li>
@@ -79,7 +81,7 @@ const admin = (
         className="text-xl flex items-center gap-3"
         to="/dashboard/manage-cupons"
       >
-        <MdAddCard className="text-3xl" /> Manage Coupons
+        <TbDiscountCheckFilled className="text-3xl" /> Manage Coupons
       </NavLink>
     </li>
   </>
