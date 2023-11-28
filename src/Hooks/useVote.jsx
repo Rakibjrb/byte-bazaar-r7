@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "./useAuth";
-import useProductById from "./useProductById";
+// import useProductById from "./useProductById";
 import useTrending from "./useTrending";
 import useAxiosSecure from "./useAxiosSecure";
 import useFeatured from "./useFeatured";
@@ -12,7 +12,6 @@ const useVote = (id, votes) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const { refetchProductById } = useProductById(id);
   const [, , refetchtrending] = useTrending(voted ? "desc" : "asc");
   const [, , refetchfeatured] = useFeatured(voted ? "desc" : "asc");
 
@@ -29,7 +28,6 @@ const useVote = (id, votes) => {
     setVoted(true);
     refetchtrending();
     refetchfeatured();
-    refetchProductById();
     res.data && Swal.fire("Voted");
   };
   return { handleVote, voted };

@@ -23,11 +23,6 @@ const navlinks = (
       </NavLink>
     </li>
     <li>
-      <NavLink to="/contact" className="text-[16px] uppercase">
-        contact us
-      </NavLink>
-    </li>
-    <li>
       <NavLink to="/faq" className="text-[16px] uppercase">
         faq
       </NavLink>

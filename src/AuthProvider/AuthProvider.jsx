@@ -70,13 +70,10 @@ const AuthProvider = ({ children }) => {
         const email = user.email;
         axios
           .post("/create-token", { email })
-          .then((res) => console.log(res.data))
+          .then((res) => localStorage.setItem("token", res.data?.token))
           .catch((err) => console.log(err));
       } else {
-        axios
-          .get("/clear-cookie")
-          .then((res) => console.log(res.data))
-          .catch((err) => console.log(err));
+        localStorage.removeItem("token");
       }
     });
 
