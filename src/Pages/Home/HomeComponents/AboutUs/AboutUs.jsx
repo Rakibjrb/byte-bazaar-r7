@@ -18,8 +18,6 @@ const AboutUs = () => {
           <img src={featuredImg} alt="" />
         </div>
         <div className="md:ml-10">
-          <p>Aug 20, 2029</p>
-          <p className="uppercase">Where can i get some?</p>
           <p>
             Byte Bazaar is your go-to destination for cutting-edge tech
             products. We curate a selection of the latest and greatest gadgets,
