@@ -3,13 +3,15 @@ import { useState } from "react";
 import axios from "axios";
 import moment from "moment/moment";
 import { ImSpinner3 } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAuth from "../../../../Hooks/useAuth";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import Swal from "sweetalert2";
 
 const AddProduct = () => {
-  const [uloading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const axiosSecure = useAxiosSecure();
@@ -59,6 +61,7 @@ const AddProduct = () => {
           .then((res) => {
             if (res.data) {
               Swal.fire("Product successfully added");
+              navigate("/dashboard/my-products");
             }
           })
           .catch((err) => {
@@ -170,7 +173,7 @@ const AddProduct = () => {
             type="submit"
             className="btn w-full font-semibold uppercase bg-red-800 text-white hover:bg-red-500"
           >
-            {uloading ? (
+            {uploading ? (
               <ImSpinner3 className="text-xl animate-spin" />
             ) : (
               "Add Now"

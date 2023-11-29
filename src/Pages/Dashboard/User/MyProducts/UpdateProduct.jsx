@@ -51,6 +51,7 @@ const UpdateProduct = () => {
             if (res.data) {
               Swal.fire("Product successfully updated");
               setUploading(false);
+              navigate("/dashboard/my-products");
             }
           })
           .catch((err) => {
@@ -133,7 +134,7 @@ const UpdateProduct = () => {
           {uploading ? (
             <ImSpinner3 className="text-xl animate-spin" />
           ) : (
-            "Add Now"
+            "Update Now"
           )}
         </button>
         <button

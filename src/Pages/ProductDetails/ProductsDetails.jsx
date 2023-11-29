@@ -28,7 +28,9 @@ const ProductsDetails = () => {
         title={product?.name || "No name"}
       />
       {isPending ? (
-        "loading..."
+        <div className="flex justify-center items-center h-[200px]">
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
       ) : (
         <>
           <div className="mt-8">

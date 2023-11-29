@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 import { MdHowToVote } from "react-icons/md";
 import { IoShareSocial } from "react-icons/io5";
 import useVote from "../../Hooks/useVote";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
-import { useLocation } from "react-router-dom";
 
 const DetailsCard = ({ product }) => {
   const url = useLocation();

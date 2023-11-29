@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Card from "../../Components/ProductCard/Card";
@@ -11,6 +14,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [mostVoted, setMostVoted] = useState([]);
   const { votedproduct } = useGetAllVotes();
 
   let count = 0;
@@ -48,6 +52,8 @@ const Products = () => {
 
   useEffect(() => {
     setAllProducts(data);
+    const topVoted = data?.filter((product) => product?.votes > 10);
+    setMostVoted(topVoted);
   }, [data]);
 
   useEffect(() => {
@@ -55,13 +61,59 @@ const Products = () => {
   }, [paginationdata]);
 
   return (
-    <div className="max-w-7xl mx-auto px-3 xl:px-0 mt-16 mb-24">
+    <div className="max-w-7xl mx-auto px-3 xl:px-0 mt-8 mb-24">
+      <SectionHeader subtitle={"--Top Voted--"} title={"Rising Products"} />
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+      >
+        {isPending ? (
+          <div className="flex justify-center items-center h-[200px]">
+            <span className="loading loading-bars loading-lg"></span>
+          </div>
+        ) : (
+          mostVoted?.map((mostVotedProduct) => (
+            <SwiperSlide key={mostVotedProduct._id}>
+              <div className="mt-6 mb-20 relative h-[300px] lg:h-[400px]">
+                <img
+                  className="w-full h-full rounded-lg"
+                  src={mostVotedProduct?.img}
+                  alt="banner image 1"
+                />
+                <div className="absolute top-0 left-0 w-full h-full bg-[#00000065] rounded-lg">
+                  <div className="w-full h-full flex justify-center items-center">
+                    <div>
+                      <h1 className="text-3xl md:text-5xl text-white font-bold">
+                        {mostVotedProduct?.name}
+                      </h1>
+                      <h2 className="text-white my-3 text-2xl text-center font-semibold">
+                        Total Votes : {mostVotedProduct?.votes}
+                      </h2>
+                      <Link
+                        to={`/product/${mostVotedProduct?._id}`}
+                        className="flex justify-center mt-3"
+                      >
+                        <button className="bg-red-600 uppercase py-2 px-6 text-white font-semibold rounded-md hover:bg-red-700 transition-colors duration-300">
+                          View Details
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))
+        )}
+      </Swiper>
       <SectionHeader subtitle={"--All Products--"} title={"Our All Products"} />
-      <div className="flex justify-center mt-10 mb-8">
+      <div className="flex justify-center my-10">
         <form onSubmit={handleSearch} className="max-w-2xl flex">
           <input
             type="text"
-            placeholder="Type here"
+            placeholder="Search using tags"
             name="searched"
             className="rounded-r-none focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
             required

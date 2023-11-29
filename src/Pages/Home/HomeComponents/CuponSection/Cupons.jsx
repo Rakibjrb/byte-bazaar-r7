@@ -31,7 +31,7 @@ const CuponDiscount = () => {
           ) : (
             allcupons?.map((cupon) => (
               <SwiperSlide key={cupon._id} className="">
-                <div className="relative py-[130px] md:py-[30px] lg:py-0 lg:h-[400px]">
+                <div className="relative py-[30px] md:py-0 lg:py-0 lg:h-[400px]">
                   <img
                     className="w-full rounded-lg"
                     src={Image1}
@@ -43,14 +43,14 @@ const CuponDiscount = () => {
                         <h2 className="text-xl text-center md:text-left md:text-5xl mb-2 md:mb-4">
                           Use this cupon
                         </h2>
-                        <h1 className="text-3xl text-center w-[80%] md:w-full mx-auto md:mx-0 md:text-left md:text-6xl">
+                        <h1 className="text-2xl text-center w-[80%] md:w-full mx-auto md:mx-0 md:text-left md:text-4xl lg:text-6xl">
                           {cupon?.cupon}
                           <span className="text-red-500 font-extrabold">
                             {" "}
                             Get {cupon?.amount}% off
                           </span>
                         </h1>
-                        <p className="text-xl text-center md:text-left md:w-3/5 mt-2">
+                        <p className="md:text-xl text-center md:text-left md:w-3/5 mt-2">
                           {cupon?.description}
                         </p>
                         <div className="flex justify-center md:justify-start">
