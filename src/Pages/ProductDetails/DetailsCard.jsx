@@ -8,7 +8,7 @@ import useVote from "../../Hooks/useVote";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-const DetailsCard = ({ product }) => {
+const DetailsCard = ({ product, refetch }) => {
   const url = useLocation();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -86,7 +86,10 @@ const DetailsCard = ({ product }) => {
           <div className="absolute w-full bottom-0 left-0 flex gap-3">
             <button
               disabled={voted || matched}
-              onClick={handleVote}
+              onClick={async () => {
+                await handleVote();
+                refetch();
+              }}
               className={`flex justify-center items-center rounded-lg py-2 flex-1 w-full px-3 ${
                 voted || matched ? "bg-gray-400" : "bg-red-600"
               } text-white text-xl hover:bg-red-700 transition-all duration-300`}
@@ -108,5 +111,6 @@ const DetailsCard = ({ product }) => {
 
 DetailsCard.propTypes = {
   product: PropTypes.object,
+  refetch: PropTypes.func,
 };
 export default DetailsCard;

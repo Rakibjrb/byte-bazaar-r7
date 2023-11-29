@@ -34,7 +34,7 @@ const ProductsDetails = () => {
       ) : (
         <>
           <div className="mt-8">
-            <DetailsCard product={product} />
+            <DetailsCard product={product} refetch={refetch} />
           </div>
           <div className="mt-20">
             <ProductReviews id={id} />
