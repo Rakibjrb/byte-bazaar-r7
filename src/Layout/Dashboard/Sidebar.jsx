@@ -5,6 +5,7 @@ import { MdAddCard } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
 import { TbDiscountCheckFilled } from "react-icons/tb";
 import { GrUserManager } from "react-icons/gr";
+import { BsGraphUpArrow } from "react-icons/bs";
 import useAuth from "../../Hooks/useAuth";
 import useGetUser from "../../Hooks/useGetUser";
 
@@ -65,7 +66,7 @@ const admin = (
         className="text-xl flex items-center gap-3"
         to="/dashboard/statistics"
       >
-        <FaShop className="text-3xl" /> Statistics
+        <BsGraphUpArrow className="text-3xl" /> Statistics
       </NavLink>
     </li>
     <li>

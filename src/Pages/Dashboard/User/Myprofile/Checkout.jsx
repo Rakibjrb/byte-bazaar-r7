@@ -68,14 +68,14 @@ const Checkout = ({ amount, setShowCheckoutForm }) => {
 
   useEffect(() => {
     axios
-      .post("/create-payment-intents", { price: parseInt(100) })
+      .post("/create-payment-intents", { price: parseInt(amount) })
       .then((res) => {
         setSecrete(res.data?.clientSecret);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [amount]);
 
   return (
     <form onSubmit={handlePayment}>

@@ -7,6 +7,8 @@ import useTotalReviews from "../../../../Hooks/DashboardData/useTotalReviews";
 import useTotalReports from "../../../../Hooks/DashboardData/useTotalReports";
 import useGetUser from "../../../../Hooks/useGetUser";
 import Checkout from "./Checkout";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
@@ -18,6 +20,31 @@ const Myprofile = () => {
   const { totalVotes } = useTotalVote();
   const { totalReviews } = useTotalReviews();
   const { totalreports } = useTotalReports();
+  const axiosSecure = useAxiosSecure();
+
+  const handleDiscount = (e) => {
+    e.preventDefault();
+    const cupon = e.target.cupon.value;
+    axiosSecure
+      .post("/validate-cupon", { cupon })
+      .then((res) => {
+        const validated = res.data;
+        if (validated.amount) {
+          const validatedamount = `0.${validated.amount}`;
+          const inFloat = parseFloat(validatedamount);
+          const calc = 100 * inFloat;
+          const discount = 100 - calc;
+          Swal.fire(`Discount Amount : ${discount}$`);
+          setAmount(discount);
+        } else {
+          Swal.fire("Invalid Entered Cupon!");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire("something went wrong");
+      });
+  };
 
   return (
     <div>
@@ -84,6 +111,21 @@ const Myprofile = () => {
       </div>
       <div className={`${showCheckoutForm ? "" : "hidden"} mt-8 mb-12`}>
         <h2 className="text-3xl font-semibold">Make Payment Now</h2>
+        <form
+          onSubmit={handleDiscount}
+          className="w-full max-w-4xl mx-auto flex mt-10"
+        >
+          <input
+            type="text"
+            placeholder="BYTEBAZZAREXAMPLE"
+            name="cupon"
+            className="px-3 w-full rounded-l-lg rounded-r-none placeholder:text-black"
+            required
+          />
+          <button className="btn rounded-l-none bg-red-400 uppercase text-white font-semibold">
+            Get Discount
+          </button>
+        </form>
         <div className="max-w-4xl mx-auto mt-10">
           <Elements stripe={stripePromise}>
             <Checkout
