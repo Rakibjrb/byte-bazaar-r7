@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineLogout, MdDashboard } from "react-icons/md";
 import toast from "react-hot-toast";
+import logo from "../../assets/logo/logo.png";
 import useAuth from "../../Hooks/useAuth";
 import Button from "../../Components/Common/Button";
 
@@ -123,15 +124,18 @@ const Nav = () => {
             </button>
             <ul
               tabIndex={0}
-              className="text-black rounded-md space-y-3 py-5 mt-3 menu-sm dropdown-content z-[1] p-2 shadow bg-base-300 w-[220px]"
+              className="text-black rounded-md space-y-3 py-5 mt-3 menu-sm dropdown-content z-[1] p-2 shadow bg-white w-[220px]"
             >
               {navlinks}
             </ul>
           </div>
-          <a className="font-bold text-xl">
-            byte
-            <span className="text-red-500 font-extrabold"> Bazaar</span>
-          </a>
+          <div className="flex items-center">
+            <img className="hidden md:block w-10 h-10" src={logo} alt="logo" />
+            <a className="font-bold text-xl">
+              Byte
+              <span className="text-red-500 font-extrabold"> Bazaar</span>
+            </a>
+          </div>
         </div>
         <div className="navbar-end z-[100000]">
           <div className="hidden lg:flex">
