@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 
 const Piechart = ({
   totalReviews,
-  totalVotes,
+  totalVotesforadmin,
   totalreports,
   totalproducts,
 }) => {
   const data = [
     { name: "Total Reviews", value: totalReviews?.length },
-    { name: "Total Votes", value: totalVotes?.length },
+    { name: "Total Votes", value: totalVotesforadmin?.length },
     { name: "Total Reports", value: totalreports?.length },
     { name: "Total Products", value: totalproducts },
   ];
@@ -64,7 +64,7 @@ const Piechart = ({
 
 Piechart.propTypes = {
   totalReviews: PropTypes.array,
-  totalVotes: PropTypes.array,
+  totalVotesforadmin: PropTypes.array,
   totalreports: PropTypes.array,
   totalproducts: PropTypes.number,
 };
