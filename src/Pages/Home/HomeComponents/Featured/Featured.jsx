@@ -30,19 +30,21 @@ const Featured = () => {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-10">
-        {isPending ? (
-          <span className="loading loading-dots loading-lg"></span>
-        ) : (
-          featured?.map((product) => (
+      {isPending ? (
+        <div className="flex justify-center items-center h-[200px]">
+          <span className="loading loading-bars loading-lg"></span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-10">
+          {featured?.map((product) => (
             <Card
               key={product._id}
               product={product}
               votedproduct={votedproduct}
             />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

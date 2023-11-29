@@ -26,9 +26,6 @@ const AboutUs = () => {
             PayPal, and other secure online payment options. Choose the method
             that suits you best during the checkout process.
           </p>
-          <button className="btn btn-outline border-0 border-b-4 mt-4 text-white">
-            Order Now
-          </button>
         </div>
       </div>
     </div>
