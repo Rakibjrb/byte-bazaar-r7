@@ -27,7 +27,7 @@ const ReviewQueue = () => {
                   <th className="text-xl">Name</th>
                   <th className="text-xl">Pending</th>
                   <th className="text-xl">Make Featured</th>
-                  <th className="text-xl">Update</th>
+                  <th className="text-xl">View Details</th>
                   <th className="text-xl">Action</th>
                 </tr>
               </thead>

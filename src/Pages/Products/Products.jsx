@@ -8,7 +8,6 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Card from "../../Components/ProductCard/Card";
 import NotFound from "../../Components/Common/NotFound";
 import useGetAllVotes from "../../Hooks/useGetAllVotes";
-import useAllProductCount from "../../Hooks/DashboardData/useAllProductCount";
 import CommonHelmet from "../../Components/Common/Helmet";
 
 const Products = () => {
@@ -16,10 +15,14 @@ const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
   const { votedproduct } = useGetAllVotes();
-
-  let count = 0;
   const axios = useAxiosPublic();
-  const { data: totalproducts = 1 } = useAllProductCount();
+  const { data: totalproducts = 1 } = useQuery({
+    queryKey: ["documentcount-for-products-page"],
+    queryFn: async () => {
+      const res = await axios.get("/document-count");
+      return res.data.totalDocuments;
+    },
+  });
 
   const { data, isPending } = useQuery({
     queryKey: ["all_products", searchText],
@@ -42,7 +45,7 @@ const Products = () => {
     queryKey: ["paginationproducts", currentPage],
     queryFn: async () => {
       const res = await axios.get(
-        `/pagination?skip=${currentPage * 5}&limit=${perpage}`
+        `/pagination?skip=${currentPage * perpage}&limit=${perpage}`
       );
       return res.data;
     },
@@ -137,7 +140,7 @@ const Products = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {allProducts?.map((product) => (
             <Card
-              key={`${product?._id}${count++}`}
+              key={`${product?._id}incard${product?._id}`}
               product={product}
               votedproduct={votedproduct}
             />
