@@ -6,7 +6,7 @@ import Button from "../../../../Components/Common/Button";
 import useGetAllVotes from "../../../../Hooks/useGetAllVotes";
 
 const Featured = () => {
-  const [sort, setSort] = useState(false);
+  const [sort, setSort] = useState(true);
   const [featured, isPending] = useFeatured(!sort ? "asc" : "desc");
   const { votedproduct } = useGetAllVotes();
 
