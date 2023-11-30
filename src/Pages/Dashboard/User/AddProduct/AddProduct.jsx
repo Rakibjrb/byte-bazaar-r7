@@ -27,7 +27,7 @@ const AddProduct = () => {
     }
     setUploading(true);
 
-    const tags = info?.tags.split(" ");
+    const tags = info?.tags.toLowerCase().split(" ");
 
     const body = new FormData();
     body.set("key", import.meta.env.VITE_imgbb_api_key);

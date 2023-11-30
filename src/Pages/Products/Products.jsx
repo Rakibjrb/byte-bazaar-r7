@@ -51,7 +51,8 @@ const Products = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     const searchedText = e.target.searched.value;
-    setSearchText(searchedText);
+    const text = searchedText.toLowerCase();
+    setSearchText(text);
   };
 
   const pagescreate = Math.ceil(totalproducts / perpage);
