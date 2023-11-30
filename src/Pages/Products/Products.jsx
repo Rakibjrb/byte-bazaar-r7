@@ -14,7 +14,6 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const [mostVoted, setMostVoted] = useState([]);
   const { votedproduct } = useGetAllVotes();
 
   let count = 0;
@@ -25,6 +24,13 @@ const Products = () => {
     queryKey: ["all_products", searchText],
     queryFn: async () => {
       const res = await axios.get(`/product/all?search=${searchText}`);
+      return res.data;
+    },
+  });
+  const { data: topvotedproducts, isPending: topvotedPending } = useQuery({
+    queryKey: ["topvotedforslider"],
+    queryFn: async () => {
+      const res = await axios.get(`/topvoted-forslider`);
       return res.data;
     },
   });
@@ -52,8 +58,6 @@ const Products = () => {
 
   useEffect(() => {
     setAllProducts(data);
-    const topVoted = data?.filter((product) => product?.votes > 10);
-    setMostVoted(topVoted);
   }, [data]);
 
   useEffect(() => {
@@ -70,12 +74,12 @@ const Products = () => {
         navigation
         pagination={{ clickable: true }}
       >
-        {isPending ? (
+        {topvotedPending ? (
           <div className="flex justify-center items-center h-[200px]">
             <span className="loading loading-bars loading-lg"></span>
           </div>
         ) : (
-          mostVoted?.map((mostVotedProduct) => (
+          topvotedproducts?.map((mostVotedProduct) => (
             <SwiperSlide key={mostVotedProduct._id}>
               <div className="mt-6 mb-20 relative h-[300px] lg:h-[400px]">
                 <img
