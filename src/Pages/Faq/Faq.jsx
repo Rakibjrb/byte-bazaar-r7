@@ -1,3 +1,5 @@
+import CommonHelmet from "../../Components/Common/Helmet";
+
 const Faq = () => {
   return (
     <div className="max-w-3xl mx-auto px-3 xl:px-0 mt-10 mb-16">
@@ -79,6 +81,7 @@ const Faq = () => {
           </div>
         </div>
       </div>
+      <CommonHelmet titlename={"FAQ"} />
     </div>
   );
 };

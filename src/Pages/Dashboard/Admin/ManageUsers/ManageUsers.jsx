@@ -1,3 +1,4 @@
+import CommonHelmet from "../../../../Components/Common/Helmet";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import useGellAllUsers from "../../../../Hooks/DashboardData/useGellAllUsers";
 import User from "./User";
@@ -41,6 +42,7 @@ const ManageUsers = () => {
           </table>
         </div>
       </div>
+      <CommonHelmet titlename={"Manage Users"} />
     </div>
   );
 };

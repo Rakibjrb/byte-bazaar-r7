@@ -9,6 +9,7 @@ import Card from "../../Components/ProductCard/Card";
 import NotFound from "../../Components/Common/NotFound";
 import useGetAllVotes from "../../Hooks/useGetAllVotes";
 import useAllProductCount from "../../Hooks/DashboardData/useAllProductCount";
+import CommonHelmet from "../../Components/Common/Helmet";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -178,6 +179,7 @@ const Products = () => {
       <div className={`${!allProducts?.length ? "" : "hidden"}`}>
         <NotFound />
       </div>
+      <CommonHelmet titlename={"Products"} />
     </div>
   );
 };

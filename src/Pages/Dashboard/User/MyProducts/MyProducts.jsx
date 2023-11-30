@@ -3,6 +3,7 @@ import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import Product from "./Product";
+import CommonHelmet from "../../../../Components/Common/Helmet";
 
 const MyProducts = () => {
   const axiosSecure = useAxiosSecure();
@@ -52,6 +53,7 @@ const MyProducts = () => {
           </table>
         </div>
       </div>
+      <CommonHelmet titlename={"My Products"} />
     </div>
   );
 };

@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../../Hooks/useAuth";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import CommonHelmet from "../../../../Components/Common/Helmet";
 
 const AddProduct = () => {
   const [uploading, setUploading] = useState(false);
@@ -181,6 +182,7 @@ const AddProduct = () => {
           </button>
         </form>
       </div>
+      <CommonHelmet titlename={"Add Products"} />
     </div>
   );
 };

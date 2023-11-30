@@ -9,6 +9,7 @@ import useGetUser from "../../../../Hooks/useGetUser";
 import Checkout from "./Checkout";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import CommonHelmet from "../../../../Components/Common/Helmet";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
@@ -135,6 +136,7 @@ const Myprofile = () => {
           </Elements>
         </div>
       </div>
+      <CommonHelmet titlename={"My profile"} />
     </div>
   );
 };

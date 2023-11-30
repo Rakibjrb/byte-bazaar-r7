@@ -4,6 +4,7 @@ import useTotalReports from "../../../../Hooks/DashboardData/useTotalReports";
 import useTotalReviews from "../../../../Hooks/DashboardData/useTotalReviews";
 import useAllProductCount from "../../../../Hooks/DashboardData/useAllProductCount";
 import useTotalVoteForAdmin from "../../../../Hooks/DashboardData/useTotalVoteForAdmin";
+import CommonHelmet from "../../../../Components/Common/Helmet";
 
 const Statistics = () => {
   const { user } = useAuth();
@@ -55,6 +56,7 @@ const Statistics = () => {
           />
         </div>
       </div>
+      <CommonHelmet titlename={"Admin Statistics"} />
     </div>
   );
 };

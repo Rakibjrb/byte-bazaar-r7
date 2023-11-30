@@ -5,6 +5,7 @@ import DetailsCard from "./DetailsCard";
 import ProductReviews from "./ProductReviews";
 import PostReviews from "./PostReviews";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import CommonHelmet from "../../Components/Common/Helmet";
 
 const ProductsDetails = () => {
   const id = useParams().id;
@@ -46,6 +47,7 @@ const ProductsDetails = () => {
           />
         </>
       )}
+      <CommonHelmet titlename={"Product Details"} />
     </div>
   );
 };

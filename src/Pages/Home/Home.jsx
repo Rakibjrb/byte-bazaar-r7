@@ -1,3 +1,4 @@
+import CommonHelmet from "../../Components/Common/Helmet";
 import AboutUs from "./HomeComponents/AboutUs/AboutUs";
 import Banner from "./HomeComponents/Banner/Banner";
 import CuponDiscount from "./HomeComponents/CuponSection/Cupons";
@@ -16,6 +17,7 @@ const Home = () => {
         <Trending />
         <CuponDiscount />
       </div>
+      <CommonHelmet titlename={"Home"} />
     </div>
   );
 };

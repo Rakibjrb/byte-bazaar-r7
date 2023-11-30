@@ -1,3 +1,4 @@
+import CommonHelmet from "../../../../Components/Common/Helmet";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import useProducts from "../../../../Hooks/DashboardData/useProducts";
 import QueueProducts from "./QueueProducts";
@@ -44,6 +45,7 @@ const ReviewQueue = () => {
           </div>
         </div>
       </div>
+      <CommonHelmet titlename={"Review Queue Products"} />
     </div>
   );
 };

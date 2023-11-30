@@ -11,6 +11,7 @@ import loginsvg from "../../assets/login/Login.svg";
 import SocialLogin from "./SocialLogin";
 import "./style.css";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import CommonHelmet from "../../Components/Common/Helmet";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -175,6 +176,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <CommonHelmet titlename={"Sign UP"} />
     </div>
   );
 };

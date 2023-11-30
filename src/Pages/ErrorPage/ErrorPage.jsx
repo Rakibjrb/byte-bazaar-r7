@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import errorImage from "./error.svg";
+import CommonHelmet from "../../Components/Common/Helmet";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const ErrorPage = () => {
           </button>
         </div>
       </div>
+      <CommonHelmet titlename={"Page not found"} />
     </div>
   );
 };

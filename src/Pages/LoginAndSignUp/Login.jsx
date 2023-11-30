@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import loginsvg from "../../assets/login/Login.svg";
 import SocialLogin from "./SocialLogin";
 import "./style.css";
+import CommonHelmet from "../../Components/Common/Helmet";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -102,6 +103,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <CommonHelmet titlename={"Login"} />
     </div>
   );
 };

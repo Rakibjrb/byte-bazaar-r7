@@ -3,6 +3,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import SectionHeader from "../../../../Components/SectionHeader/SectionHeader";
 import Reported from "./Reported";
+import CommonHelmet from "../../../../Components/Common/Helmet";
 
 const ReportedProducts = () => {
   const { user } = useAuth();
@@ -52,6 +53,7 @@ const ReportedProducts = () => {
           </div>
         </div>
       </div>
+      <CommonHelmet titlename={"Reported products"} />
     </div>
   );
 };
