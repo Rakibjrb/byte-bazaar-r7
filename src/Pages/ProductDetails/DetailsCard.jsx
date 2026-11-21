@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "react-router-dom";
 import { MdHowToVote } from "react-icons/md";
 import { IoShareSocial } from "react-icons/io5";
+import { HiFlag, HiTag, HiCalendarDays, HiCheckBadge } from "react-icons/hi2";
+import toast from "react-hot-toast";
 import useVote from "../../Hooks/useVote";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
@@ -17,8 +19,9 @@ const DetailsCard = ({ product, refetch }) => {
 
   const productId = url?.pathname.slice(9);
   const { data: votedproduct } = useQuery({
-    queryKey: ["getallvotesfromdb"],
+    queryKey: ["getallvotesfromdb", productId, user?.email],
     queryFn: async () => {
+      if (!user?.email || !productId) return null;
       const res = await axiosSecure.get(
         `/vote?email=${user?.email}&productId=${productId}`
       );
@@ -31,78 +34,161 @@ const DetailsCard = ({ product, refetch }) => {
   const matched =
     matchedproductId === _id && matchedproductuseremail === user?.email;
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: name,
+        url: window.location.href,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success("Product link copied to clipboard!");
+    }
+  };
+
   const handleReport = async () => {
-    const data = {
-      productId: _id,
-      name,
-      img,
-      owner,
-      reportedUser: {
-        name: user.displayName,
-        email: user.email,
-      },
-    };
-    const res = await axiosSecure.post("/report", data);
-    res.data._id && Swal.fire("Report Successfull...");
+    if (!user) {
+      toast.error("Please log in to report this product");
+      return;
+    }
+
+    const confirm = await Swal.fire({
+      title: "Report Product?",
+      text: "Are you sure you want to flag this item for moderator review?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#ef4444",
+      cancelButtonColor: "#64748b",
+      confirmButtonText: "Yes, report it",
+    });
+
+    if (confirm.isConfirmed) {
+      const data = {
+        productId: _id,
+        name,
+        img,
+        owner,
+        reportedUser: {
+          name: user.displayName,
+          email: user.email,
+        },
+      };
+      const res = await axiosSecure.post("/report", data);
+      if (res.data._id) {
+        Swal.fire({
+          icon: "success",
+          title: "Report Submitted",
+          text: "Moderators have been notified.",
+          confirmButtonColor: "#ef4444",
+        });
+      }
+    }
   };
 
   return (
-    <div>
-      <div className="flex justify-between bg-red-700 py-4 px-3 md:px-6 items-center">
-        <div className="flex items-center gap-4 text-white">
-          <img
-            className="w-12 h-12 rounded-full"
-            src={owner?.image || "https://i.ibb.co/5x441PC/user.png"}
-            alt={owner?.name || "user19419"}
-          />
+    <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl overflow-hidden">
+      {/* Creator Bar */}
+      <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-neutral-900 px-6 py-4 flex items-center justify-between text-white border-b border-white/10">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <img
+              className="w-11 h-11 rounded-full object-cover border-2 border-white/20"
+              src={owner?.image || "https://i.ibb.co/5x441PC/user.png"}
+              alt={owner?.name || "Product Owner"}
+            />
+            <HiCheckBadge className="text-red-500 absolute -bottom-1 -right-1 text-base bg-slate-900 rounded-full" />
+          </div>
           <div>
-            <h4>Name : {owner?.name || "user19419"}</h4>
-            <h4>Date : {time || "0-0-0"}</h4>
+            <h4 className="font-bold text-sm text-white">
+              {owner?.name || "Byte Creator"}
+            </h4>
+            <div className="flex items-center gap-1.5 text-xs text-slate-400">
+              <HiCalendarDays className="text-slate-400" />
+              <span>{time || "Recently Launched"}</span>
+            </div>
           </div>
         </div>
-        <IoShareSocial className="text-3xl hover:cursor-pointer text-white" />
+
+        <button
+          onClick={handleShare}
+          title="Share Product"
+          className="p-2.5 rounded-xl bg-white/10 hover:bg-red-600 text-white transition-all duration-200 hover:scale-105 active:scale-95"
+          aria-label="Share product"
+        >
+          <IoShareSocial className="text-xl" />
+        </button>
       </div>
-      <div className="pb-2 relative">
-        <div className="effect overflow-hidden h-56 lg:h-[400px] ">
-          <img
-            className="image w-full h-full "
-            src={img || ""}
-            alt={name || ""}
-          />
+
+      {/* Hero Image Showcase */}
+      <div className="relative overflow-hidden w-full h-72 sm:h-96 lg:h-[440px] bg-slate-950">
+        <img
+          className="w-full h-full object-contain sm:object-cover"
+          src={img || ""}
+          alt={name || "Product Image"}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+        <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+          <span className="px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider border border-white/20 shadow-lg">
+            Hardware Spotlight
+          </span>
+          <div className="px-3.5 py-1.5 rounded-full bg-red-600/90 text-white text-xs font-black shadow-lg">
+            {votes || 0} Upvotes
+          </div>
         </div>
-        <div className="mt-4">
-          <p className="mt-3 text-justify">
-            <span className="font-bold text-xl">Read Details : </span>
-            {description || "no details"}
+      </div>
+
+      {/* Product Content Body */}
+      <div className="p-6 sm:p-8 space-y-6">
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            {name}
+          </h2>
+          <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed whitespace-pre-line">
+            {description || "No description provided for this gadget."}
           </p>
-          <h3 className="mt-2 font-semibold">Total Voted : {votes || 0}</h3>
-          <div className="flex flex-wrap mt-3 mb-16">
-            {tags?.map((tag) => (
-              <p key={tag} className="text-[#7d7d7d] text-xl gap-4 mr-4">
-                #{tag}
-              </p>
-            ))}
-          </div>
-          <div className="absolute w-full bottom-0 left-0 flex gap-3">
-            <button
-              disabled={voted || matched}
-              onClick={async () => {
-                await handleVote();
-                refetch();
-              }}
-              className={`flex justify-center items-center rounded-lg py-2 flex-1 w-full px-3 ${
-                voted || matched ? "bg-gray-400" : "bg-red-600"
-              } text-white text-xl hover:bg-red-700 transition-all duration-300`}
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-100">
+          {tags?.map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-red-50 hover:text-red-600 transition-colors"
             >
-              <MdHowToVote className="mr-2 text-2xl" /> {votes || 0}
-            </button>
-            <button
-              onClick={handleReport}
-              className="flex-1 w-full btn-outline btn font-semibold uppercase"
-            >
-              Report Product
-            </button>
-          </div>
+              <HiTag className="text-red-500 text-xs" />
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Action Buttons: Vote & Report */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-slate-100">
+          <button
+            disabled={voted || matched}
+            onClick={async () => {
+              await handleVote();
+              refetch();
+            }}
+            className={`w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-base font-bold transition-all duration-200 ${
+              voted || matched
+                ? "bg-slate-200 text-slate-400 cursor-not-allowed"
+                : "bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-lg shadow-red-600/25 hover:shadow-red-600/40 hover:scale-[1.01] active:scale-95"
+            }`}
+          >
+            <MdHowToVote className="text-2xl" />
+            <span>{voted || matched ? "Already Upvoted" : "Upvote Device"}</span>
+            <span className="ml-1 px-2.5 py-0.5 rounded-lg bg-black/20 text-white text-xs font-black">
+              {votes || 0}
+            </span>
+          </button>
+
+          <button
+            onClick={handleReport}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-2xl border border-slate-300 text-slate-600 hover:text-rose-600 hover:border-rose-300 hover:bg-rose-50 text-sm font-semibold transition-all duration-200 active:scale-95"
+          >
+            <HiFlag className="text-base text-rose-500" />
+            <span>Report</span>
+          </button>
         </div>
       </div>
     </div>
@@ -113,4 +199,5 @@ DetailsCard.propTypes = {
   product: PropTypes.object,
   refetch: PropTypes.func,
 };
+
 export default DetailsCard;

@@ -1,4 +1,5 @@
+/* Active state styling for navlinks */
 .active {
-  color: red;
-  font-weight: bold;
+  color: #ef4444;
+  font-weight: 700;
 }

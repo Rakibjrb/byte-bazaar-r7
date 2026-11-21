@@ -31,6 +31,7 @@ const Products = () => {
       return res.data;
     },
   });
+
   const { data: topvotedproducts, isPending: topvotedPending } = useQuery({
     queryKey: ["topvotedforslider"],
     queryFn: async () => {
@@ -39,13 +40,13 @@ const Products = () => {
     },
   });
 
-  const perpage = 20;
+  const perpage = 8;
 
   const { data: paginationdata } = useQuery({
     queryKey: ["paginationproducts", currentPage],
     queryFn: async () => {
       const res = await axios.get(
-        `/pagination?skip=${currentPage * perpage}&limit=${perpage}`
+        `/pagination?skip=${currentPage * perpage}&limit=${perpage}`,
       );
       return res.data;
     },
@@ -67,7 +68,7 @@ const Products = () => {
 
   useEffect(() => {
     setAllProducts(paginationdata);
-  }, [paginationdata]);
+  }, [data, paginationdata]);
 
   return (
     <div className="max-w-7xl mx-auto px-3 xl:px-0 mt-8 mb-24">
@@ -86,7 +87,7 @@ const Products = () => {
         ) : (
           topvotedproducts?.map((mostVotedProduct) => (
             <SwiperSlide key={mostVotedProduct._id}>
-              <div className="mt-6 mb-20 relative h-[300px] lg:h-[400px]">
+              <div className="mt-6 mb-20 relative h-[300px] lg:h-[500px]">
                 <img
                   className="w-full h-full rounded-lg"
                   src={mostVotedProduct?.img}
@@ -119,13 +120,12 @@ const Products = () => {
       </Swiper>
       <SectionHeader subtitle={"--All Products--"} title={"Our All Products"} />
       <div className="flex justify-center my-10">
-        <form onSubmit={handleSearch} className="max-w-2xl flex">
+        <form onSubmit={handleSearch} className="w-full max-w-3xl flex">
           <input
             type="text"
             placeholder="Search using tags"
             name="searched"
             className="rounded-r-none focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
-            required
           />
           <button className="btn rounded-l-none bg-red-500 uppercase -ml-1 text-white font-semibold">
             Search
@@ -136,6 +136,8 @@ const Products = () => {
         <div className="flex justify-center items-center h-[300px]">
           <span className="loading loading-bars loading-lg"></span>
         </div>
+      ) : !allProducts?.length ? (
+        <NotFound />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {allProducts?.map((product) => (
@@ -165,7 +167,7 @@ const Products = () => {
               className={`${currentPage === page && "bg-red-400"} btn btn-sm`}
               onClick={() => setCurrentPage(page)}
             >
-              {page}
+              {page + 1}
             </button>
           ))}
           <button
@@ -179,10 +181,6 @@ const Products = () => {
           </button>
         </div>
       )}
-
-      <div className={`${!allProducts?.length ? "" : "hidden"}`}>
-        <NotFound />
-      </div>
       <CommonHelmet titlename={"Products"} />
     </div>
   );
