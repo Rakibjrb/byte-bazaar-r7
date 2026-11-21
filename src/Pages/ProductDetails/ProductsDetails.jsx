@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { HiArrowLeft } from "react-icons/hi2";
 import SectionHeader from "../../Components/SectionHeader/SectionHeader";
 import DetailsCard from "./DetailsCard";
 import ProductReviews from "./ProductReviews";
@@ -8,8 +9,9 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import CommonHelmet from "../../Components/Common/Helmet";
 
 const ProductsDetails = () => {
-  const id = useParams().id;
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+
   const {
     data: product = {},
     isPending,
@@ -23,31 +25,44 @@ const ProductsDetails = () => {
   });
 
   return (
-    <div className="px-3 md:px-0 max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto mt-10 mb-24">
-      <SectionHeader
-        subtitle={`--Details of--`}
-        title={product?.name || "No name"}
-      />
-      {isPending ? (
-        <div className="flex justify-center items-center h-[200px]">
-          <span className="loading loading-bars loading-lg"></span>
+    <div className="min-h-screen bg-slate-50/50 py-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        {/* Navigation Breadcrumb */}
+        <div className="mb-6">
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-red-600 transition-colors group"
+          >
+            <HiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
+            <span>Back to all products</span>
+          </Link>
         </div>
-      ) : (
-        <>
-          <div className="mt-8">
+
+        <SectionHeader
+          subtitle="Hardware Overview"
+          title={product?.name || "Product Showcase"}
+        />
+
+        {isPending ? (
+          <div className="flex flex-col justify-center items-center h-80 gap-3">
+            <span className="loading loading-spinner text-error loading-lg"></span>
+            <p className="text-slate-500 text-sm animate-pulse">
+              Retrieving hardware specifications...
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-12 mt-8">
             <DetailsCard product={product} refetch={refetch} />
-          </div>
-          <div className="mt-20">
             <ProductReviews id={id} />
+            <PostReviews
+              id={id}
+              productName={product?.name || "this product"}
+              refetch={refetch}
+            />
           </div>
-          <PostReviews
-            id={id}
-            productName={product?.name || "No name"}
-            refetch={refetch}
-          />
-        </>
-      )}
-      <CommonHelmet titlename={"Product Details"} />
+        )}
+        <CommonHelmet titlename={product?.name ? `${product.name} - Byte Bazaar` : "Product Details"} />
+      </div>
     </div>
   );
 };

@@ -68,7 +68,7 @@ const Products = () => {
 
   useEffect(() => {
     setAllProducts(paginationdata);
-  }, [paginationdata]);
+  }, [data, paginationdata]);
 
   return (
     <div className="max-w-7xl mx-auto px-3 xl:px-0 mt-8 mb-24">
@@ -87,7 +87,7 @@ const Products = () => {
         ) : (
           topvotedproducts?.map((mostVotedProduct) => (
             <SwiperSlide key={mostVotedProduct._id}>
-              <div className="mt-6 mb-20 relative h-[300px] lg:h-[400px]">
+              <div className="mt-6 mb-20 relative h-[300px] lg:h-[500px]">
                 <img
                   className="w-full h-full rounded-lg"
                   src={mostVotedProduct?.img}
