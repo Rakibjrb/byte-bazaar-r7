@@ -7,7 +7,7 @@ import useGetAllVotes from "../../../../Hooks/useGetAllVotes";
 
 const Featured = () => {
   const [sort, setSort] = useState(true);
-  const [featured, isPending] = useFeatured(!sort ? "asc" : "desc");
+  const [featured, isPending] = useFeatured(!sort ? "desc" : "asc");
   const { votedproduct } = useGetAllVotes();
 
   return (

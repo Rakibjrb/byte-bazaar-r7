@@ -1,6 +1,6 @@
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import { HiSparkles, HiArrowRight } from "react-icons/hi2";
+import { HiSparkles, HiArrowRight, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { FaFire } from "react-icons/fa6";
 import image1 from "../../../../assets/banner/bg1.jpg";
 import image2 from "../../../../assets/banner/bg2.jpg";
@@ -99,20 +99,7 @@ const Banner = () => {
               className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-13 md:h-13 rounded-full bg-black/40 hover:bg-red-600/90 text-white backdrop-blur-md border border-white/20 transition-all duration-300 flex items-center justify-center shadow-lg group hover:scale-110"
               aria-label="Previous slide"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 md:h-6 md:w-6 transform group-hover:-translate-x-0.5 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
+              <HiChevronLeft className="h-6 w-6 transform group-hover:-translate-x-0.5 transition-transform" />
             </button>
           )
         }
@@ -125,20 +112,7 @@ const Banner = () => {
               className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-13 md:h-13 rounded-full bg-black/40 hover:bg-red-600/90 text-white backdrop-blur-md border border-white/20 transition-all duration-300 flex items-center justify-center shadow-lg group hover:scale-110"
               aria-label="Next slide"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 md:h-6 md:w-6 transform group-hover:translate-x-0.5 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <HiChevronRight className="h-6 w-6 transform group-hover:translate-x-0.5 transition-transform" />
             </button>
           )
         }
