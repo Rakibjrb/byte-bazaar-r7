@@ -98,7 +98,7 @@ const Nav = () => {
         scrolled ? "bg-black/80 py-3" : "bg-black backdrop-blur-md py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
         <div className="flex items-center justify-between">
           {/* Left: Brand Logo & Title */}
           <div className="flex items-center gap-3">

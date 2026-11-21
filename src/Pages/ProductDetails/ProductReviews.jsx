@@ -47,7 +47,7 @@ const ProductReviews = ({ id }) => {
                 <div className="flex flex-col items-center mx-8 my-16">
                   <img
                     className="rounded-full w-16 h-16"
-                    src={review.image}
+                    src={review?.image || "https://i.ibb.co/5x441PC/user.png"}
                     alt={review.name}
                   />
                   <h3 className="text-2xl text-red-400 my-5">{review.name}</h3>

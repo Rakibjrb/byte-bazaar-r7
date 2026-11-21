@@ -46,7 +46,7 @@ const PostReviews = ({ id, productName }) => {
   };
 
   const disablePostBtn = reviews?.find(
-    (review) => review.image === user.photoURL
+    (review) => review?.image !== user?.photoURL,
   );
 
   return (
@@ -80,13 +80,13 @@ const PostReviews = ({ id, productName }) => {
           <option>5</option>
         </select>
         <input
-          defaultValue={user.displayName}
+          defaultValue={user?.displayName}
           type="text"
           className="focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
           disabled
         />
         <input
-          defaultValue={user.photoURL}
+          defaultValue={user?.photoURL}
           type="text"
           className="focus:outline-none input-bordered input px-3 w-full placeholder:text-black"
           disabled
@@ -96,7 +96,7 @@ const PostReviews = ({ id, productName }) => {
             disabled
             className="text-center btn w-full col-span-2 bg-red-400 font-semibold text-white uppercase"
           >
-            Already Reviewed
+            Login First
           </button>
         ) : (
           <button className="text-center btn w-full col-span-2 bg-red-400 font-semibold text-white uppercase">
