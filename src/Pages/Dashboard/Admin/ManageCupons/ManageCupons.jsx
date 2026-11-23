@@ -6,7 +6,7 @@ import ViewCupons from "./ViewCupons";
 const ManageCupons = () => {
   return (
     <div>
-      <SectionHeader subtitle={"--Cupons--"} title={"Manage Cupon Codes"} />
+      <div>Manage coupon codes</div>
       <AddCupon />
       <ViewCupons />
       <CommonHelmet titlename={"Manage Cupon Codes"} />

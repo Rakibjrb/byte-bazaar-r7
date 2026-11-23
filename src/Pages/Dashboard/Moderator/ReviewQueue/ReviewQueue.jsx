@@ -9,12 +9,7 @@ const ReviewQueue = () => {
   return (
     <div className="mt-8">
       <div className="md:mt-16">
-        <div className="hidden md:block">
-          <SectionHeader
-            subtitle={"--Products Queue--"}
-            title={"Review Products Queue"}
-          />
-        </div>
+        <div className="hidden md:block">Product Review Ques</div>
         <div className="md:hidden">
           <SectionHeader title={"Review Products Queue"} />
         </div>

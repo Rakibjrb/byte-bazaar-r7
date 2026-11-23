@@ -78,12 +78,7 @@ const AddProduct = () => {
 
   return (
     <div className="md:mt-10">
-      <div className="hidden md:block">
-        <SectionHeader
-          subtitle={"--Add Product--"}
-          title={"Add a new product"}
-        />
-      </div>
+      <div className="hidden md:block">Add New Product</div>
       <div className="md:hidden">
         <SectionHeader title={"Add a new product"} />
       </div>

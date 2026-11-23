@@ -1,36 +1,38 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { HiBars3 } from "react-icons/hi2";
 
 const Dashboard = () => {
   return (
-    <div className="lg:bg-gray-300">
-      <div className="drawer lg:drawer-open max-w-screen-2xl mx-auto">
+    <div className="min-h-screen bg-slate-900 text-slate-100 flex">
+      <div className="drawer lg:drawer-open w-full">
         <input type="checkbox" id="my-drawer" className="drawer-toggle" />
-        <div className="drawer-content px-3 xl:px-0">
-          <label
-            htmlFor="my-drawer"
-            className="btn bg-gray-600 text-white drawer-button lg:hidden"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+
+        {/* Main Content Area */}
+        <div className="drawer-content flex flex-col flex-1 min-w-0 bg-slate-900">
+          {/* Top Mobile Bar */}
+          <div className="lg:hidden sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-slate-950/90 backdrop-blur-xl border-b border-white/10">
+            <label
+              htmlFor="my-drawer"
+              className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none transition-colors cursor-pointer"
+              aria-label="Open sidebar"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </label>
-          <div className="mt-3">
-            <Outlet />
+              <HiBars3 className="w-6 h-6" />
+            </label>
+            <span className="font-extrabold text-lg text-white">
+              Byte<span className="text-red-500">Bazaar</span> Dashboard
+            </span>
+            <div className="w-6"></div>
           </div>
+
+          {/* Subpage Container */}
+          <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+            <Outlet />
+          </main>
         </div>
-        <div className="drawer-side">
+
+        {/* Drawer Sidebar */}
+        <div className="drawer-side z-50">
           <label
             htmlFor="my-drawer"
             aria-label="close sidebar"

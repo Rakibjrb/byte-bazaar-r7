@@ -8,9 +8,7 @@ const ManageUsers = () => {
 
   return (
     <div className="mt-8">
-      <div className="hidden md:block">
-        <SectionHeader subtitle={"--Manage--"} title={"Manage Users"} />
-      </div>
+      <div className="hidden md:block">Manage Users</div>
       <div className="md:hidden">
         <SectionHeader title={"Manage Users"} />
       </div>

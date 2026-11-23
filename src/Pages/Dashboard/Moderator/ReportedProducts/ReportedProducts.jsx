@@ -19,12 +19,7 @@ const ReportedProducts = () => {
   return (
     <div className="mt-8">
       <div className="md:mt-16">
-        <div className="hidden md:block">
-          <SectionHeader
-            subtitle={"--Reported--"}
-            title={"Reported Products"}
-          />
-        </div>
+        <div className="hidden md:block">View reported products</div>
         <div className="md:hidden">
           <SectionHeader title={"Review Products Queue"} />
         </div>
