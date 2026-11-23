@@ -54,7 +54,7 @@ const WhyChooseUs = () => {
             const Icon = item.icon;
             return (
               <div
-                key={idx}
+                key={`why-choose-us-faq-${idx}`}
                 className="group p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-red-500/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-1"
               >
                 <div className="w-12 h-12 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-2xl mb-4 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300 shadow-md">

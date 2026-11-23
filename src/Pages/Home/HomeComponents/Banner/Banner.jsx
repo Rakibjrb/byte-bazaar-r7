@@ -1,6 +1,11 @@
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
-import { HiSparkles, HiArrowRight, HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import {
+  HiSparkles,
+  HiArrowRight,
+  HiChevronLeft,
+  HiChevronRight,
+} from "react-icons/hi2";
 import { FaFire } from "react-icons/fa6";
 import image1 from "../../../../assets/banner/bg1.jpg";
 import image2 from "../../../../assets/banner/bg2.jpg";
@@ -137,7 +142,7 @@ const Banner = () => {
           const TagIcon = slide.tagIcon;
           return (
             <div
-              key={idx}
+              key={`hero-section-banner-${idx}`}
               className="relative min-h-[580px] md:min-h-[660px] lg:h-[760px] xl:h-[840px] w-full flex items-center"
             >
               {/* Background Image */}

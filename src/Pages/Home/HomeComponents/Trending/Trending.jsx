@@ -50,7 +50,7 @@ const Trending = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {trending?.map((product) => (
             <TrendingProduct
-              key={product._id}
+              key={`tending-products-${product._id}`}
               product={product}
               votedproduct={votedproduct}
             />

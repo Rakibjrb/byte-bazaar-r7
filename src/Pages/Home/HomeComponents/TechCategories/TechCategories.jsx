@@ -61,7 +61,7 @@ const TechCategories = () => {
           const Icon = cat.icon;
           return (
             <Link
-              key={idx}
+              key={`top-categories-${idx}`}
               to="/products"
               className="group flex flex-col items-center text-center p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-red-500/40 hover:-translate-y-1.5 transition-all duration-300"
             >

@@ -50,7 +50,7 @@ const CuponDiscount = () => {
             </div>
           ) : (
             allcupons?.map((cupon) => (
-              <SwiperSlide key={cupon._id}>
+              <SwiperSlide key={`discount-coupons-${cupon._id}`}>
                 <div className="relative min-h-[420px] md:min-h-[460px] flex items-center overflow-hidden rounded-3xl bg-slate-950">
                   {/* Background Image with Ambient Dark Blur */}
                   <img
